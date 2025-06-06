@@ -1,11 +1,22 @@
+import Image from 'next/image';
+
 export default function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="max-w-md w-full px-4 py-8 text-center">
-        <h1 className="text-4xl font-bold text-white mb-4">
-          <span className="text-blue-500">World</span>
-          <span className="font-light">SaaS</span>
-        </h1>
+        <div className="flex items-center justify-center mb-4">
+          <Image 
+            src="/assets/logo-solo-azul-medio.png" 
+            alt="Umporcento Logo" 
+            width={40} 
+            height={40} 
+            className="mr-3"
+          />
+          <h1 className="text-4xl text-white">
+            <span className="font-gotham-black">Um</span>
+            <span className="font-gotham-thin">porcento</span>
+          </h1>
+        </div>
         <p className="mt-3 text-lg text-gray-400">
           Sua plataforma completa para produtos digitais
         </p>
