@@ -2,6 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Keen Slider Customizations */
+.keen-slider {
+  transition: height 0.3s;
+}
+
+.keen-slider__slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
 /* Substituindo Gotham por fontes alternativas do Google Fonts */
 /* Montserrat 100 substitui Gotham Thin */
 /* Montserrat 900 substitui Gotham Black */

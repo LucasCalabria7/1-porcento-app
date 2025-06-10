@@ -72,12 +72,12 @@ export default function Sidebar() {
               <div className="bg-primary-900 p-1 rounded-md mr-2">
                 <Image 
                   src="/assets/logo-branca.png" 
-                  alt="World SaaS Logo" 
+                  alt="Umporcento Logo" 
                   width={24} 
                   height={24} 
                 />
               </div>
-          <span className="font-gotham-black text-lg text-white">World<span className="font-gotham-thin">SaaS</span></span>
+          <span className="font-gotham-black text-lg text-white">Um<span className="font-gotham-thin">porcento</span></span>
         </Link>
       </div>
       

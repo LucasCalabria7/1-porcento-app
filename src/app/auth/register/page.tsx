@@ -1,6 +1,4 @@
 "use client";
-
-import PublicLayout from '@/layouts/PublicLayout';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -45,7 +43,6 @@ export default function RegisterPage() {
   };
 
   return (
-    <PublicLayout>
       <div className="min-h-[calc(100vh-200px)] flex items-center justify-center bg-dark-800 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div className="text-center">
@@ -217,6 +214,5 @@ export default function RegisterPage() {
           </div>
         </div>
       </div>
-    </PublicLayout>
   );
 }

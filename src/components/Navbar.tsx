@@ -32,12 +32,12 @@ export default function Navbar() {
                 <div className="bg-primary-900 p-1 rounded-md mr-2">
                   <Image 
                     src="/assets/logo-branca.png" 
-                    alt="World SaaS Logo" 
+                    alt="Umporcento Logo" 
                     width={32} 
                     height={32} 
                   />
                 </div>
-                <span className="font-gotham-black text-xl text-white">World<span className="font-gotham-thin">SaaS</span></span>
+                <span className="font-gotham-black text-xl text-white">Um<span className="font-gotham-thin">porcento</span></span>
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
