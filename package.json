@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deletenext": "rd /s /q .next 2>nul || echo Pasta .next removida ou não existente",
+    "deletenext": "cmd /c rmdir /s /q .next",
     "cleancache": "next clean && npm cache clean --force"
   },
   "dependencies": {
