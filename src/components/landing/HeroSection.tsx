@@ -76,15 +76,36 @@ export default function HeroSection() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-300">Estratégias de marketing e vendas de alto desempenho</span>
+                    <span className="text-gray-300">Sem precisar de investir em anúncios</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 bg-primary-500/20 p-1 rounded-full">
+                      <svg className="w-4 h-4 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-300">+1.000 vendedores altamente treinados em seu produto</span>
                   </li>
                 </ul>
               </div>
               <div className="md:w-1/2 md:pl-10">
-                <div className="relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-primary-900 rounded-lg blur-lg opacity-75 animate-pulse"></div>
-                  <div className="relative bg-dark-700 border border-dark-600 rounded-lg p-6 shadow-xl">
-                    <img src="/assets/business-illustration.svg" alt="Empresas" className="w-full h-auto" />
+                <div className="relative w-[95%] overflow-visible">
+                  <div 
+                    className="absolute rounded-lg blur-md opacity-75 animate-pulse bg-gradient-to-r from-primary-500 to-primary-900" 
+                    style={{
+                      top: '-5px',
+                      left: '-5px',
+                      right: '-5px',
+                      bottom: '-5px',
+                    }}
+                  ></div>
+                  <div className="relative bg-dark-700 border border-dark-600 rounded-lg overflow-hidden shadow-xl">
+                    <img 
+                      src="/assets/startup-pic.jpg" 
+                      alt="Empresas" 
+                      className="w-full h-auto object-cover object-center" 
+                      style={{ aspectRatio: '1500/1001' }}
+                    />
                   </div>
                 </div>
               </div>
@@ -124,13 +145,34 @@ export default function HeroSection() {
                     </div>
                     <span className="text-gray-300">Treinamento e suporte para maximizar seus resultados</span>
                   </li>
+                  <li className="flex items-start">
+                    <div className="mr-3 mt-1 bg-primary-500/20 p-1 rounded-full">
+                      <svg className="w-4 h-4 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-gray-300">Produtos de recorrência global, monetize em qualquer moeda do mundo</span>
+                  </li>
                 </ul>
               </div>
               <div className="md:w-1/2 md:pl-10">
-                <div className="relative">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-primary-900 rounded-lg blur-lg opacity-75 animate-pulse"></div>
-                  <div className="relative bg-dark-700 border border-dark-600 rounded-lg p-6 shadow-xl">
-                    <img src="/assets/sellers-illustration.svg" alt="Vendedores" className="w-full h-auto" />
+                <div className="relative w-[95%] overflow-visible">
+                  <div 
+                    className="absolute rounded-lg blur-md opacity-75 animate-pulse bg-gradient-to-r from-primary-500 to-primary-900" 
+                    style={{
+                      top: '-5px',
+                      left: '-5px',
+                      right: '-5px',
+                      bottom: '-5px',
+                    }}
+                  ></div>
+                  <div className="relative bg-dark-700 border border-dark-600 rounded-lg overflow-hidden shadow-xl">
+                    <img 
+                      src="/assets/marketing-pic.jpg" 
+                      alt="Vendedores Globais" 
+                      className="w-full h-auto object-cover object-center" 
+                      style={{ aspectRatio: '16/9' }}
+                    />
                   </div>
                 </div>
               </div>

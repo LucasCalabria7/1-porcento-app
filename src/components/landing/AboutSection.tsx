@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 
@@ -18,11 +18,21 @@ export default function AboutSection() {
     },
     loop: true,
   });
+  
+  // Auto-play functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (instanceRef.current) {
+        instanceRef.current.next();
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [instanceRef]);
 
   return (
     <section id="sobre" className="py-24 bg-dark-800">
       <div className="max-w-7xl mx-auto px-6">
-        <div ref={sliderRef} className="keen-slider mb-16">
+        <div ref={sliderRef} className="keen-slider mb-16 ">
           {/* Slide 1 - Para Empresas */}
           <div className="keen-slider__slide">
             <div className="text-center max-w-3xl mx-auto">
@@ -72,7 +82,7 @@ export default function AboutSection() {
         
         {/* Ecosystem Card */}
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-primary-900 rounded-2xl blur-lg opacity-75"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-primary-900 rounded-2xl blur-lg animate-pulse opacity-75"></div>
           <div className="relative bg-dark-700 border border-dark-600 rounded-2xl p-8 shadow-xl">
             <h3 className="text-2xl font-gotham-black text-white mb-4 text-center">O Ecossistema 1% World</h3>
             <p className="text-gray-300 text-center leading-relaxed">

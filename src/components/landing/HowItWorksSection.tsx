@@ -1,8 +1,16 @@
 "use client";
 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
+
+// Função para criar um card padronizado
+const SlideCard = ({ label, value }: { label: string; value: string }) => (
+  <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
+    <div className="text-lg font-medium text-white">{label}</div>
+    <div className="text-primary-400 font-medium">{value}</div>
+  </div>
+);
 
 export default function HowItWorksSection() {
   const [activeTab, setActiveTab] = useState<'empresas' | 'vendedores'>('empresas');
@@ -24,74 +32,45 @@ export default function HowItWorksSection() {
       spacing: 16,
     },
   });
+  
+  // Auto-play functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (instanceRef.current) {
+        instanceRef.current.next();
+      }
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [instanceRef]);
 
   const empresasSlides = [
     {
-      title: "Cadastre seu produto",
+      title: "Insira detalhes sobre seu produto em nossa plataforma",
       content: (
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Passo 1</div>
-            <div className="text-white">Crie sua conta e cadastre seu produto digital</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Benefício</div>
-            <div className="text-white">Interface intuitiva e suporte técnico</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Recursos</div>
-            <div className="text-white">Hospedagem, proteção e entrega automática</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Tempo</div>
-            <div className="text-white">Menos de 30 minutos para configurar</div>
-          </div>
+        <div className="w-full flex flex-col space-y-4">
+          <SlideCard label="Título do produto" value="AgentAI - Seu SDR com IA" />
+          <SlideCard label="Preço" value="U$ 19.90/mês" />
+          <SlideCard label="Comissão" value="50%" />
         </div>
       )
     },
     {
-      title: "Configure seu programa de afiliados",
+      title: "Apresente seu produto para nossos vendedores globais",
       content: (
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Passo 2</div>
-            <div className="text-white">Defina comissões e regras para afiliados</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Benefício</div>
-            <div className="text-white">Atraia os melhores vendedores do mercado</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Recursos</div>
-            <div className="text-white">Dashboard de desempenho e análises</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Flexibilidade</div>
-            <div className="text-white">Personalize comissões por produto</div>
-          </div>
+        <div className="w-full flex flex-col space-y-4">
+          <SlideCard label="Pitch de apresentação" value="Vídeo que te torna único" />
+          <SlideCard label="Arquivos de compartilhamento" value="Criativos validados" />
+          <SlideCard label="Dados de compartilhamento" value="Métricas já analisadas" />
         </div>
       )
     },
     {
-      title: "Acompanhe e escale seus resultados",
+      title: "Integração com seu financeiro",
       content: (
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Passo 3</div>
-            <div className="text-white">Monitore vendas e otimize estratégias</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Benefício</div>
-            <div className="text-white">Crescimento exponencial de receita</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Recursos</div>
-            <div className="text-white">Relatórios detalhados e insights</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Suporte</div>
-            <div className="text-white">Mentoria estratégica personalizada</div>
-          </div>
+        <div className="w-full flex flex-col space-y-4">
+          <SlideCard label="Integração com Gateway" value="Utilize a sua ou a nossa plataforma" />
+          <SlideCard label="Projeção de monetização" value="Aumente faturamento e MRR" />
+          <SlideCard label="Gamifique seus ganhos" value="Conexão única com top vendedores" />
         </div>
       )
     }
@@ -99,70 +78,75 @@ export default function HowItWorksSection() {
 
   const vendedoresSlides = [
     {
-      title: "Crie sua conta de afiliado",
+      title: "Descubra produtos de tecnologia e recorrência",
       content: (
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Passo 1</div>
-            <div className="text-white">Registre-se como afiliado na plataforma</div>
+        <div className="flex flex-col space-y-4">
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
+            <div className="text-lg font-medium text-white">Recorrência</div>
+            <div className="text-primary-400 font-medium">Construa renda sólida e previsível</div>
           </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Benefício</div>
-            <div className="text-white">Acesso imediato a produtos premium</div>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
+            <div className="text-lg font-medium text-white">Globalização</div>
+            <div className="text-primary-400 font-medium">Venda para qualquer lugar do mundo</div>
           </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Recursos</div>
-            <div className="text-white">Dashboard personalizado e materiais</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Tempo</div>
-            <div className="text-white">Menos de 10 minutos para começar</div>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
+            <div className="text-lg font-medium text-white">Estrutura</div>
+            <div className="text-primary-400 font-medium">Monte sua própria estrutura digital</div>
           </div>
         </div>
       )
     },
     {
-      title: "Escolha produtos e receba treinamento",
+      title: "Crie seu próprio império e seja criador de produtos",
       content: (
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Passo 2</div>
-            <div className="text-white">Selecione produtos e acesse treinamentos</div>
+        <div className="flex flex-col space-y-4">
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
+            <div className="text-lg font-medium text-white">Transformação</div>
+            <div className="text-primary-400 font-medium">Tenha seu próprio projeto além de vender outros já validados</div>
           </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Benefício</div>
-            <div className="text-white">Conhecimento especializado de vendas</div>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
+            <div className="text-lg font-medium text-white">Mentoria</div>
+            <div className="text-primary-400 font-medium">Suporte completo desde estratégias até monetização</div>
           </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Recursos</div>
-            <div className="text-white">Materiais prontos e estratégias testadas</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Comunidade</div>
-            <div className="text-white">Acesso a grupo exclusivo de afiliados</div>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
+            <div className="text-lg font-medium text-white">Produtos diversos</div>
+            <div className="text-primary-400 font-medium">Micro-SaaS, SaaS, Agentes de IA, escolhe o que mais se identifica</div>
           </div>
         </div>
       )
     },
     {
-      title: "Promova e receba comissões",
+      title: "Comunidade única e exclusiva focada em resultados e crescimento conjunto",
       content: (
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Passo 3</div>
-            <div className="text-white">Divulgue produtos e acompanhe resultados</div>
+        <div className="bg-gradient-to-br from-dark-800 to-dark-900 p-8 rounded-xl border border-dark-600 shadow-xl">
+          <div className="grid grid-cols-3 gap-8 text-center mb-10">
+            <div>
+              <div className="text-4xl font-gotham-black text-primary-400 mb-2">1000+</div>
+              <div className="text-gray-300">Membros Ativos</div>
+            </div>
+            <div>
+              <div className="text-4xl font-gotham-black text-primary-400 mb-2">24/7</div>
+              <div className="text-gray-300">Suporte Dedicado</div>
+            </div>
+            <div>
+              <div className="text-4xl font-gotham-black text-primary-400 mb-2">50+</div>
+              <div className="text-gray-300">Países</div>
+            </div>
           </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Benefício</div>
-            <div className="text-white">Comissões atrativas e recorrentes</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Recursos</div>
-            <div className="text-white">Links de afiliado e pixels de rastreamento</div>
-          </div>
-          <div className="bg-dark-700/50 p-4 rounded-lg">
-            <div className="text-sm text-gray-400 mb-1">Pagamentos</div>
-            <div className="text-white">Rápidos e em múltiplas moedas</div>
+          
+          <div className="grid grid-cols-3 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-gotham-black text-primary-400 mb-2">100+</div>
+              <div className="text-gray-300">Mentorias Realizadas</div>
+            </div>
+            <div>
+              <div className="text-4xl font-gotham-black text-primary-400 mb-2">R$1M+</div>
+              <div className="text-gray-300">GMV Mensal</div>
+            </div>
+            <div>
+              <div className="text-4xl font-gotham-black text-primary-400 mb-2">10+</div>
+              <div className="text-gray-300">Eventos Anuais</div>
+            </div>
           </div>
         </div>
       )
@@ -213,9 +197,11 @@ export default function HowItWorksSection() {
           <div ref={sliderRef} className="keen-slider">
             {currentSlides.map((slide, index) => (
               <div key={index} className="keen-slider__slide">
-                <div className="bg-dark-800 border border-dark-600 rounded-xl p-8 shadow-xl">
-                  <h3 className="text-2xl font-bold text-white mb-6 text-center">{slide.title}</h3>
-                  {slide.content}
+                <div className="bg-dark-800 border border-dark-600 rounded-xl p-8 shadow-xl h-[450px]">
+                  <h3 className="text-3xl md:text-4xl font-gotham-black text-white mb-8 text-center">{slide.title}</h3>
+                  <div className="h-[300px] flex items-center justify-center">
+                    {slide.content}
+                  </div>
                 </div>
               </div>
             ))}
