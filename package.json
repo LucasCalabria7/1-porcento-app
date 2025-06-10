@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deletenext": "rd /s /q .next 2>nul || echo Pasta .next removida ou não existente",
+    "cleancache": "next clean && npm cache clean --force"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.10",

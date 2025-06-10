@@ -6,7 +6,7 @@ import 'keen-slider/keen-slider.min.css';
 
 // Função para criar um card padronizado
 const SlideCard = ({ label, value }: { label: string; value: string }) => (
-  <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
+  <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center" style={{ height: '60px' }}>
     <div className="text-lg font-medium text-white">{label}</div>
     <div className="text-primary-400 font-medium">{value}</div>
   </div>
@@ -43,34 +43,74 @@ export default function HowItWorksSection() {
     return () => clearInterval(interval);
   }, [instanceRef]);
 
+  // Função para criar um slide padronizado
+  const createStandardSlide = (title: string, items: {label: string, value: string}[]) => ({
+    title,
+    content: (
+      <div className="w-full flex flex-col space-y-4">
+        {items.map((item, index) => (
+          <SlideCard key={index} label={item.label} value={item.value} />
+        ))}
+      </div>
+    )
+  });
+
+  // Definição manual dos slides para garantir consistência total
   const empresasSlides = [
     {
       title: "Insira detalhes sobre seu produto em nossa plataforma",
       content: (
-        <div className="w-full flex flex-col space-y-4">
-          <SlideCard label="Título do produto" value="AgentAI - Seu SDR com IA" />
-          <SlideCard label="Preço" value="U$ 19.90/mês" />
-          <SlideCard label="Comissão" value="50%" />
+        <div className="w-full flex flex-col space-y-4" style={{ width: '100%', minWidth: '100%' }}>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
+            <div className="text-lg font-medium text-white">Título do produto</div>
+            <div className="text-primary-400 font-medium">AgentAI - Seu SDR com IA</div>
+          </div>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
+            <div className="text-lg font-medium text-white">Preço</div>
+            <div className="text-primary-400 font-medium">U$ 19.90/mês</div>
+          </div>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
+            <div className="text-lg font-medium text-white">Comissão</div>
+            <div className="text-primary-400 font-medium">50%</div>
+          </div>
         </div>
       )
     },
     {
       title: "Apresente seu produto para nossos vendedores globais",
       content: (
-        <div className="w-full flex flex-col space-y-4">
-          <SlideCard label="Pitch de apresentação" value="Vídeo que te torna único" />
-          <SlideCard label="Arquivos de compartilhamento" value="Criativos validados" />
-          <SlideCard label="Dados de compartilhamento" value="Métricas já analisadas" />
+        <div className="w-full flex flex-col space-y-4" style={{ width: '100%', minWidth: '100%' }}>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
+            <div className="text-lg font-medium text-white">Pitch de apresentação</div>
+            <div className="text-primary-400 font-medium">Vídeo que te torna único</div>
+          </div>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
+            <div className="text-lg font-medium text-white">Arquivos de compartilhamento</div>
+            <div className="text-primary-400 font-medium">Criativos validados</div>
+          </div>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
+            <div className="text-lg font-medium text-white">Dados de compartilhamento</div>
+            <div className="text-primary-400 font-medium">Métricas já analisadas</div>
+          </div>
         </div>
       )
     },
     {
       title: "Integração com seu financeiro",
       content: (
-        <div className="w-full flex flex-col space-y-4">
-          <SlideCard label="Integração com Gateway" value="Utilize a sua ou a nossa plataforma" />
-          <SlideCard label="Projeção de monetização" value="Aumente faturamento e MRR" />
-          <SlideCard label="Gamifique seus ganhos" value="Conexão única com top vendedores" />
+        <div className="w-full flex flex-col space-y-4" style={{ width: '100%', minWidth: '100%' }}>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
+            <div className="text-lg font-medium text-white">Integração com Gateway</div>
+            <div className="text-primary-400 font-medium">Utilize a sua ou a nossa plataforma</div>
+          </div>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
+            <div className="text-lg font-medium text-white">Projeção de monetização</div>
+            <div className="text-primary-400 font-medium">Aumente faturamento e MRR</div>
+          </div>
+          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
+            <div className="text-lg font-medium text-white">Gamifique seus ganhos</div>
+            <div className="text-primary-400 font-medium">Conexão única com top vendedores</div>
+          </div>
         </div>
       )
     }
@@ -193,13 +233,13 @@ export default function HowItWorksSection() {
         </div>
         
         {/* Slider */}
-        <div className="max-w-4xl mx-auto">
-          <div ref={sliderRef} className="keen-slider">
+        <div className="max-w-4xl mx-auto w-full">
+          <div ref={sliderRef} className="keen-slider w-full">
             {currentSlides.map((slide, index) => (
-              <div key={index} className="keen-slider__slide">
-                <div className="bg-dark-800 border border-dark-600 rounded-xl p-8 shadow-xl h-[450px]">
-                  <h3 className="text-3xl md:text-4xl font-gotham-black text-white mb-8 text-center">{slide.title}</h3>
-                  <div className="h-[300px] flex items-center justify-center">
+              <div key={index} className="keen-slider__slide w-full">
+                <div className="bg-dark-800 border border-dark-600 rounded-xl p-8 shadow-xl h-[450px] w-full">
+                  <h3 className="text-3xl md:text-4xl font-gotham-black text-white mb-8 text-center w-full">{slide.title}</h3>
+                  <div className="h-[300px] flex items-center justify-center w-full">
                     {slide.content}
                   </div>
                 </div>

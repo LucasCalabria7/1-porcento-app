@@ -50,15 +50,15 @@ export default function FAQSection() {
           {faqs.map((faq, index) => (
             <div 
               key={index} 
-              className="border border-dark-600 rounded-lg overflow-hidden bg-dark-700"
+              className="border border-dark-600 rounded-lg overflow-hidden bg-dark-700 transition-all duration-300 hover:border-primary-500/30"
             >
               <button
-                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none"
+                className="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none transition-all duration-300 hover:bg-dark-600/30 group"
                 onClick={() => toggleFAQ(index)}
               >
-                <span className="font-medium text-white">{faq.question}</span>
+                <span className="font-medium text-white group-hover:text-primary-400 transition-colors duration-300">{faq.question}</span>
                 <svg
-                  className={`w-5 h-5 text-primary-400 transform transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`}
+                  className={`w-5 h-5 text-primary-400 transform transition-all duration-300 ${openIndex === index ? 'rotate-180' : ''} group-hover:text-primary-300 group-hover:scale-110`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

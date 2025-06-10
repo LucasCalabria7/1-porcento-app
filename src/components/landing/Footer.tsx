@@ -6,10 +6,10 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <footer className="bg-dark-800 border-t border-dark-700">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-3">
           {/* Column 1: Logo and Description */}
-          <div>
+          <div className="h-full flex flex-col">
             <Link href="/" className="flex items-center mb-4">
               <div className="bg-gradient-to-br from-primary-500 to-primary-900 p-2 rounded-lg mr-3 shadow-lg shadow-primary-900/20">
                 <Image 
@@ -21,11 +21,11 @@ export default function Footer() {
               </div>
               <span className="font-gotham-black text-xl text-white tracking-tight">Um<span className="font-gotham-thin bg-clip-text text-transparent bg-gradient-to-r from-primary-300 to-primary-500">porcento</span></span>
             </Link>
-            <p className="text-gray-400 text-sm mb-6">
+            <p className="text-gray-400 text-sm mb-4">
               Transformando o mercado de produtos digitais com tecnologia 
               inovadora e estratégias de vendas de alto desempenho.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mt-auto">
               <a href="#" aria-label="Twitter" className="text-gray-400 hover:text-primary-400 transition-colors">
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
@@ -45,9 +45,9 @@ export default function Footer() {
           </div>
           
           {/* Column 2: Núcleos Links */}
-          <div>
+          <div className="h-full flex flex-col">
             <h3 className="text-white font-medium mb-4">Nossos Núcleos</h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               <li>
                 <a href="#tech-nucleus" className="text-gray-400 hover:text-primary-400 transition-colors">
                   1% World Tecnologia
@@ -71,45 +71,33 @@ export default function Footer() {
             </ul>
           </div>
           
-          {/* Column 3: Founders */}
-          <div>
-            <h3 className="text-white font-medium mb-4">Fundadores</h3>
-            <div className="space-y-4">
-              <a 
-                href="https://instagram.com/lucascalabria" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center group"
-              >
-                <div className="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center mr-3 group-hover:bg-primary-500/30 transition-colors">
-                  <span className="text-lg font-bold text-primary-400">L</span>
-                </div>
-                <div>
-                  <h4 className="text-white group-hover:text-primary-400 transition-colors">Lucas Calabria</h4>
-                  <p className="text-xs text-gray-400">Núcleo de Tecnologia</p>
-                </div>
-              </a>
+          {/* Column 3: Selos de Qualidade */}
+          <div className="h-full flex flex-col">
+            <h3 className="text-white font-medium mb-4">Certificações</h3>
+            <div className="flex flex-row space-x-3 items-center">
+              <Image 
+                src="/assets/selo-prime.png" 
+                alt="Selo Prime" 
+                width={120} 
+                height={50} 
+                className="object-contain"
+                priority
+              />
               
-              <a 
-                href="https://instagram.com/thalesmarinho" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center group"
-              >
-                <div className="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center mr-3 group-hover:bg-primary-500/30 transition-colors">
-                  <span className="text-lg font-bold text-primary-400">T</span>
-                </div>
-                <div>
-                  <h4 className="text-white group-hover:text-primary-400 transition-colors">Thales Marinho</h4>
-                  <p className="text-xs text-gray-400">Núcleo de Vendas</p>
-                </div>
-              </a>
+              <Image 
+                src="/assets/selo-verificada-fundo-claro.png" 
+                alt="Selo Verificada" 
+                width={120} 
+                height={50} 
+                className="object-contain"
+                priority
+              />
             </div>
           </div>
         </div>
         
         {/* Bottom copyright */}
-        <div className="pt-8 border-t border-dark-700 flex flex-col md:flex-row justify-between items-center">
+        <div className="pt-6 border-t border-dark-700 flex flex-col md:flex-row justify-between items-center">
           <p className="text-xs text-gray-500 mb-4 md:mb-0">&copy; {new Date().getFullYear()} Umporcento. Todos os direitos reservados.</p>
           <div className="flex space-x-6">
             <a href="#" className="text-xs text-gray-400 hover:text-primary-400 transition-colors">Termos</a>
