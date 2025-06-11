@@ -88,6 +88,24 @@ export const signOut = async () => {
   }
 }
 
+// Função de autenticação com Google
+export const signInWithGoogle = async () => {
+  try {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      }
+    })
+    
+    if (error) throw error
+    return data
+  } catch (error) {
+    console.error('Google login error:', error)
+    throw error
+  }
+}
+
 // Verificar sessão com fallback
 export const getSession = async () => {
   try {

@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabaseClient';
-import { Button, Input, Checkbox, EmailIcon, LockIcon, UserIcon, AlertIcon, PlusIcon } from '@/components/ui';
+import { supabase, signInWithGoogle } from '@/lib/supabaseClient';
+import { Button, Input, Checkbox, EmailIcon, LockIcon, UserIcon, AlertIcon, PlusIcon, GoogleButton } from '@/components/ui';
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
@@ -12,6 +12,7 @@ export default function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [error, setError] = useState('');
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -39,6 +40,19 @@ export default function RegisterPage() {
       router.push('/dashboard');
     } catch (error) {
       setError('Error creating account');
+    }
+  };
+  
+  const handleGoogleSignIn = async () => {
+    try {
+      setError('');
+      setIsGoogleLoading(true);
+      await signInWithGoogle();
+      // O redirecionamento será tratado pelo OAuth e pela página de callback
+    } catch (error) {
+      console.error('Google sign in error:', error);
+      setError('Erro ao conectar com Google');
+      setIsGoogleLoading(false);
     }
   };
 
@@ -69,6 +83,23 @@ export default function RegisterPage() {
                   </div>
                 </div>
               )}
+              
+              <div className="mb-6">                
+                <GoogleButton 
+                  onClick={handleGoogleSignIn} 
+                  isLoading={isGoogleLoading} 
+                  text="Registrar com Google" 
+                />
+              </div>
+              
+              <div className="relative my-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-dark-600"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-dark-700/50 text-gray-400">ou continue com email</span>
+                </div>
+              </div>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-5">
