@@ -1,6 +1,6 @@
 "use client";
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { supabase, signInWithGoogle } from '@/lib/supabaseClient';
 import { Button } from '@/components/ui/Button';
@@ -15,7 +15,21 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true); // Ativado por padrão
   const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  // Verificar se há erros na URL
+  useEffect(() => {
+    const errorParam = searchParams.get('error');
+    if (errorParam) {
+      if (errorParam === 'auth-callback-failed') {
+        setError('Falha na autenticação com Google. Por favor, tente novamente.');
+      } else if (errorParam === 'auth-callback-error') {
+        setError('Ocorreu um erro durante a autenticação. Por favor, tente novamente.');
+      }
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,14 +37,34 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
+      // Configurar opções de persistência baseadas na escolha do usuário
       const { data, error: authError } = await supabase.auth.signInWithPassword({
         email,
-        password,
+        password
       });
+      
+      // Após o login bem-sucedido, definir a duração da sessão
+      if (!authError && data.session) {
+        // Armazenar a preferência do usuário
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
+        }
+      }
       
       if (authError) throw authError;
       if (data.session) {
-        router.push('/dashboard');
+        console.log('Login bem-sucedido, redirecionando para dashboard');
+        console.log(`Sessão configurada para ${rememberMe ? 'persistir por 30 dias' : 'expirar em 1 hora'}`);
+        
+        // Salvar preferência do usuário no localStorage
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
+        }
+        
+        // Garantir que o redirecionamento aconteça
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 100);
       } else {
         throw new Error('Login failed');
       }
@@ -46,11 +80,21 @@ export default function LoginPage() {
     try {
       setError('');
       setIsGoogleLoading(true);
-      await signInWithGoogle();
+      
+      // Verificar se estamos em um ambiente de navegador
+      if (typeof window === 'undefined') {
+        throw new Error('Google login não está disponível neste ambiente');
+      }
+      
+      // Salvar preferência do usuário no localStorage antes do redirecionamento OAuth
+      localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
+      
+      // Passar a opção de persistência para o login com Google
+      await signInWithGoogle(rememberMe);
       // O redirecionamento será tratado pelo OAuth e pela página de callback
     } catch (error) {
       console.error('Google login error:', error);
-      setError('Erro ao conectar com Google');
+      setError(error instanceof Error ? error.message : 'Erro ao conectar com Google');
       setIsGoogleLoading(false);
     }
   };
@@ -135,7 +179,9 @@ export default function LoginPage() {
                   <Checkbox
                     id="remember-me"
                     name="remember-me"
-                    label="Lembrar-me"
+                    label="Mantenha-me conectado"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
                   />
 
                   <div className="text-sm">

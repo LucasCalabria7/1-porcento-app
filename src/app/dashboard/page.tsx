@@ -1,16 +1,18 @@
 "use client"
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import DashboardLayout from '@/layouts/DashboardLayout';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabaseClient';
 import { ProfileCompletionModal } from '@/components/ui';
 
 export default function DashboardPage() {
+  const router = useRouter();
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   
-  // Verificar se o perfil do usuário está completo
+  // Verificar se o usuário está autenticado e se o perfil está completo
   useEffect(() => {
     const checkProfileCompletion = async () => {
       try {
@@ -18,48 +20,74 @@ export default function DashboardPage() {
         const { data: { session } } = await supabase.auth.getSession();
         
         if (!session) {
-          console.log('Sem sessão. Usuário não está logado.');
-          setIsLoading(false);
+          console.log('Sem sessão. Redirecionando para login...');
+          router.push('/auth/login');
           return;
         }
         
         console.log('Verificando perfil para o usuário:', session.user.email);
         
-        // Verificar se o perfil está completo nos metadados do usuário
-        const profileCompleted = session.user.user_metadata?.profile_completed || false;
-        const profileType = session.user.user_metadata?.profile_type;
-        
-        console.log('Metadados do usuário:', { profileCompleted, profileType });
-        
-        // Se o perfil NÃO estiver completo ou o tipo de perfil NÃO estiver definido nos metadados
-        if (!profileCompleted || !profileType) {
-          console.log('Perfil incompleto nos metadados. Mostrando modal.');
+        // Primeiro verificar se a tabela profiles existe e está acessível
+        const { error: tableCheckError } = await supabase
+          .from('profiles')
+          .select('count')
+          .limit(1);
+          
+        if (tableCheckError) {
+          console.error('Tabela profiles pode não existir ou não está acessível:', tableCheckError);
           setShowProfileModal(true);
           setIsLoading(false);
           return;
         }
         
         // Verificar se o perfil existe na tabela de perfis
-        try {
-          const { data: profile, error } = await supabase
+        const { data: profile, error: profileError } = await supabase
+          .from('profiles')
+          .select('onboarding_completed, profile_type')
+          .eq('user_id', session.user.id)
+          .maybeSingle(); // Usa maybeSingle para não lançar erro se não encontrar
+        
+        console.log('Dados do perfil na tabela:', profile, 'Erro:', profileError);
+        
+        // Se o perfil existir na tabela e estiver completo, não mostrar modal
+        if (profile && profile.onboarding_completed) {
+          console.log('Perfil completo na tabela. Ocultando modal.');
+          setShowProfileModal(false);
+          setIsLoading(false);
+          return;
+        }
+        
+        // Verificar metadados do usuário como backup
+        const profileCompleted = session.user.user_metadata?.profile_completed || false;
+        const profileType = session.user.user_metadata?.profile_type;
+        
+        console.log('Metadados do usuário:', { profileCompleted, profileType });
+        
+        // Se o perfil estiver completo nos metadados mas não na tabela,
+        // tentar criar o perfil automaticamente
+        if (profileCompleted && profileType && (!profile || !profile.onboarding_completed)) {
+          console.log('Perfil completo nos metadados, mas não na tabela. Tentando criar perfil...');
+          
+          const { error: insertError } = await supabase
             .from('profiles')
-            .select('onboarding_completed, profile_type')
-            .eq('user_id', session.user.id)
-            .single();
-          
-          console.log('Dados do perfil na tabela:', profile, 'Erro:', error);
-          
-          // Se houver erro (perfil não existe) ou o perfil não tiver onboarding completo ou tipo de perfil
-          if (error || !profile || !profile.onboarding_completed || !profile.profile_type) {
-            console.log('Perfil incompleto na tabela. Mostrando modal.');
-            setShowProfileModal(true);
-          } else {
-            console.log('Perfil completo na tabela. Ocultando modal.');
+            .upsert({
+              user_id: session.user.id,
+              profile_type: profileType,
+              onboarding_completed: true,
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            });
+            
+          if (!insertError) {
+            console.log('Perfil criado com sucesso. Ocultando modal.');
             setShowProfileModal(false);
+          } else {
+            console.error('Erro ao criar perfil:', insertError);
+            setShowProfileModal(true);
           }
-        } catch (profileError) {
-          console.error('Erro ao buscar perfil na tabela:', profileError);
-          // Se houver erro ao buscar o perfil, mostrar o modal por precaução
+        } else {
+          // Se chegou aqui, o perfil não está completo ou não existe
+          console.log('Perfil incompleto. Mostrando modal.');
           setShowProfileModal(true);
         }
       } catch (error) {
