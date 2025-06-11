@@ -1,10 +1,79 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import DashboardLayout from '@/layouts/DashboardLayout';
 import Link from 'next/link';
+import { supabase } from '@/lib/supabaseClient';
+import { ProfileCompletionModal } from '@/components/ui';
 
 export default function DashboardPage() {
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Verificar se o perfil do usuário está completo
+  useEffect(() => {
+    const checkProfileCompletion = async () => {
+      try {
+        // Obter a sessão atual
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (!session) {
+          console.log('Sem sessão. Usuário não está logado.');
+          setIsLoading(false);
+          return;
+        }
+        
+        console.log('Verificando perfil para o usuário:', session.user.email);
+        
+        // Verificar se o perfil está completo nos metadados do usuário
+        const profileCompleted = session.user.user_metadata?.profile_completed || false;
+        const profileType = session.user.user_metadata?.profile_type;
+        
+        console.log('Metadados do usuário:', { profileCompleted, profileType });
+        
+        // Se o perfil NÃO estiver completo ou o tipo de perfil NÃO estiver definido nos metadados
+        if (!profileCompleted || !profileType) {
+          console.log('Perfil incompleto nos metadados. Mostrando modal.');
+          setShowProfileModal(true);
+          setIsLoading(false);
+          return;
+        }
+        
+        // Verificar se o perfil existe na tabela de perfis
+        try {
+          const { data: profile, error } = await supabase
+            .from('profiles')
+            .select('onboarding_completed, profile_type')
+            .eq('user_id', session.user.id)
+            .single();
+          
+          console.log('Dados do perfil na tabela:', profile, 'Erro:', error);
+          
+          // Se houver erro (perfil não existe) ou o perfil não tiver onboarding completo ou tipo de perfil
+          if (error || !profile || !profile.onboarding_completed || !profile.profile_type) {
+            console.log('Perfil incompleto na tabela. Mostrando modal.');
+            setShowProfileModal(true);
+          } else {
+            console.log('Perfil completo na tabela. Ocultando modal.');
+            setShowProfileModal(false);
+          }
+        } catch (profileError) {
+          console.error('Erro ao buscar perfil na tabela:', profileError);
+          // Se houver erro ao buscar o perfil, mostrar o modal por precaução
+          setShowProfileModal(true);
+        }
+      } catch (error) {
+        console.error('Erro ao verificar perfil:', error);
+        // Em caso de erro, mostrar o modal por precaução
+        setShowProfileModal(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    checkProfileCompletion();
+  }, []);
+  
   // Dados simulados para o dashboard
   const stats = [
     { name: 'Produtos Ativos', value: '24', change: '+12%', changeType: 'increase' },
@@ -30,6 +99,9 @@ export default function DashboardPage() {
 
   return (
     <DashboardLayout>
+      {/* Modal de perfil incompleto */}
+      <ProfileCompletionModal isOpen={showProfileModal} />
+      
       <div className="py-6">
         {/* Cabeçalho */}
         <div className="mb-8">
