@@ -2,17 +2,19 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabaseClient';
+import { supabase, signInWithGoogle } from '@/lib/supabaseClient';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { EmailIcon, LockIcon, AlertIcon } from '@/components/ui/Icons';
+import { GoogleButton } from '@/components/ui';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -37,6 +39,19 @@ export default function LoginPage() {
       setError(error instanceof Error ? error.message : 'Authentication failed');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      setError('');
+      setIsGoogleLoading(true);
+      await signInWithGoogle();
+      // O redirecionamento será tratado pelo OAuth e pela página de callback
+    } catch (error) {
+      console.error('Google login error:', error);
+      setError('Erro ao conectar com Google');
+      setIsGoogleLoading(false);
     }
   };
 
@@ -67,6 +82,23 @@ export default function LoginPage() {
                   </div>
                 </div>
               )}
+              
+              <div className="mb-6">
+                <GoogleButton 
+                  onClick={handleGoogleSignIn} 
+                  isLoading={isGoogleLoading} 
+                  text="Entrar com Google" 
+                />
+              </div>
+              
+              <div className="relative my-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-dark-600"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-dark-700/50 text-gray-400">ou continue com email</span>
+                </div>
+              </div>
               
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="space-y-5">
