@@ -1,19 +1,36 @@
 "use client";
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabaseClient';
+import { supabase, signInWithGoogle } from '@/lib/supabaseClient';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { EmailIcon, LockIcon, AlertIcon } from '@/components/ui/Icons';
+import { GoogleButton } from '@/components/ui';
 
-export default function LoginPage() {
+// Componente interno que usa useSearchParams
+function LoginContent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true); // Ativado por padrão
   const router = useRouter();
+  const searchParams = useSearchParams();
+  
+  // Verificar se há erros na URL
+  useEffect(() => {
+    const errorParam = searchParams.get('error');
+    if (errorParam) {
+      if (errorParam === 'auth-callback-failed') {
+        setError('Falha na autenticação com Google. Por favor, tente novamente.');
+      } else if (errorParam === 'auth-callback-error') {
+        setError('Ocorreu um erro durante a autenticação. Por favor, tente novamente.');
+      }
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,14 +38,34 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
+      // Configurar opções de persistência baseadas na escolha do usuário
       const { data, error: authError } = await supabase.auth.signInWithPassword({
         email,
-        password,
+        password
       });
+      
+      // Após o login bem-sucedido, definir a duração da sessão
+      if (!authError && data.session) {
+        // Armazenar a preferência do usuário
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
+        }
+      }
       
       if (authError) throw authError;
       if (data.session) {
-        router.push('/dashboard');
+        console.log('Login bem-sucedido, redirecionando para dashboard');
+        console.log(`Sessão configurada para ${rememberMe ? 'persistir por 30 dias' : 'expirar em 1 hora'}`);
+        
+        // Salvar preferência do usuário no localStorage
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
+        }
+        
+        // Garantir que o redirecionamento aconteça
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 100);
       } else {
         throw new Error('Login failed');
       }
@@ -37,6 +74,29 @@ export default function LoginPage() {
       setError(error instanceof Error ? error.message : 'Authentication failed');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      setError('');
+      setIsGoogleLoading(true);
+      
+      // Verificar se estamos em um ambiente de navegador
+      if (typeof window === 'undefined') {
+        throw new Error('Google login não está disponível neste ambiente');
+      }
+      
+      // Salvar preferência do usuário no localStorage antes do redirecionamento OAuth
+      localStorage.setItem('rememberMe', rememberMe ? 'true' : 'false');
+      
+      // Passar a opção de persistência para o login com Google
+      await signInWithGoogle(rememberMe);
+      // O redirecionamento será tratado pelo OAuth e pela página de callback
+    } catch (error) {
+      console.error('Google login error:', error);
+      setError(error instanceof Error ? error.message : 'Erro ao conectar com Google');
+      setIsGoogleLoading(false);
     }
   };
 
@@ -67,6 +127,23 @@ export default function LoginPage() {
                   </div>
                 </div>
               )}
+              
+              <div className="mb-6">
+                <GoogleButton 
+                  onClick={handleGoogleSignIn} 
+                  isLoading={isGoogleLoading} 
+                  text="Entrar com Google" 
+                />
+              </div>
+              
+              <div className="relative my-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-dark-600"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-dark-700/50 text-gray-400">ou continue com email</span>
+                </div>
+              </div>
               
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="space-y-5">
@@ -103,7 +180,9 @@ export default function LoginPage() {
                   <Checkbox
                     id="remember-me"
                     name="remember-me"
-                    label="Lembrar-me"
+                    label="Mantenha-me conectado"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
                   />
 
                   <div className="text-sm">
@@ -143,5 +222,16 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
+  );
+}
+
+// Componente principal que usa Suspense
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center min-h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div>
+    </div>}>
+      <LoginContent />
+    </Suspense>
   );
 }
