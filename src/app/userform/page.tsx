@@ -5,79 +5,106 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import { Button } from '@/components/ui/Button';
 
-// Tipos para as etapas do formulário
-type UserProfile = 'CEO' | 'Associate' | 'UGC Creator';
+// Importar tipos e componentes
+import { FormData, UserProfileType } from './types';
+import { ProgressBar } from './components';
 
-// Componente de barra de progresso
-const ProgressBar = ({ currentStep, totalSteps }: { currentStep: number; totalSteps: number }) => {
-  const progress = Math.round((currentStep / totalSteps) * 100);
-  
-  return (
-    <div className="w-full">
-      <div className="flex justify-between mb-1 text-xs text-gray-400">
-        <span>{progress}% Completo</span>
-        <span>Etapa {currentStep} de {totalSteps}</span>
-      </div>
-      <div className="w-full bg-dark-600 rounded-full h-2.5">
-        <div 
-          className="bg-gradient-to-r from-primary-500 to-primary-700 h-2.5 rounded-full transition-all duration-500 ease-in-out" 
-          style={{ width: `${progress}%` }}
-        ></div>
-      </div>
-    </div>
-  );
-};
+// Importar passos do formulário
+import ProfileTypeStep from './steps/ProfileTypeStep';
+import BasicInfoStep from './steps/BasicInfoStep';
+import CEOSpecificStep from './steps/CEOSpecificStep';
+import AssociateSpecificStep from './steps/AssociateSpecificStep';
+import CreatorSpecificStep from './steps/CreatorSpecificStep';
+import MonetizationStep from './steps/MonetizationStep';
+import ReviewStep from './steps/ReviewStep';
 
-// Componente de opção de perfil
-const ProfileOption = ({ 
-  title, 
-  description, 
-  icon, 
-  selected, 
-  onClick 
-}: { 
-  title: string; 
-  description: string; 
-  icon: React.ReactNode; 
-  selected: boolean; 
-  onClick: () => void;
-}) => {
-  return (
-    <div 
-      className={`p-6 rounded-xl border ${selected ? 'border-primary-500 bg-primary-500/10' : 'border-dark-600 bg-dark-700/50'} cursor-pointer transition-all duration-200 hover:border-primary-400 hover:bg-dark-700/80`}
-      onClick={onClick}
-    >
-      <div className="flex items-start">
-        <div className={`p-3 rounded-lg ${selected ? 'bg-primary-500' : 'bg-dark-600'} mr-4`}>
-          {icon}
-        </div>
-        <div>
-          <h3 className="text-lg font-medium text-white mb-1">{title}</h3>
-          <p className="text-sm text-gray-400">{description}</p>
-        </div>
-        <div className="ml-auto">
-          <div className={`w-5 h-5 rounded-full border-2 ${selected ? 'border-primary-500 bg-primary-500' : 'border-gray-500'} flex items-center justify-center`}>
-            {selected && (
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </svg>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+// Importar opções para os selects
+import {
+  countryOptions,
+  languageOptions,
+  monetizationMethodOptions,
+  globalMonetizationOptions,
+  digitalProductTypeOptions,
+  referralSourceOptions,
+  creatorExperienceLevelOptions,
+  companyRevenueOptions,
+  globalSellingExperienceOptions
+} from './types';
+
+interface CEOFormData {
+  companyRevenue: string;
+}
+
+interface AssociateFormData {
+  globalSellingExperience: string;
+}
+
+interface CreatorFormData {
+  creatorExperienceLevel: string;
+}
+
+// Ícones para as opções de perfil
+const CEOIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+  </svg>
+);
+
+const AssociateIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+  </svg>
+);
+
+const CreatorIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+  </svg>
+);
+
+// Função para gerar UUID v4
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0;
+    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
 
 export default function UserFormPage() {
+  // Estados para controle do formulário
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedProfile, setSelectedProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<any>(null);
   const router = useRouter();
   
-  // Total de etapas no formulário
-  const totalSteps = 1; // Por enquanto só temos 1 etapa
+  // Estado para dados do formulário
+  const [formData, setFormData] = useState<FormData>({
+    fullName: '',
+    email: '',
+    phoneNumber: '',
+    country: 'BR', // Default para Brasil
+    birthDate: '',
+    document: '',
+    address: '',
+    language: 'pt-BR', // Default para Português
+    profileType: 'CEO', // Valor inicial, será alterado na primeira etapa
+    monetizationMethod: '',
+    globalMonetization: '',
+    digitalProductStrategy: false,
+    digitalProductType: [],
+    referralSource: '',
+    onboardingCompleted: false,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    // Campos específicos para cada tipo de perfil
+    companyRevenue: '',
+    globalSellingExperience: '',
+    creatorExperienceLevel: ''
+  });
+  
+  // Total de etapas no formulário (adaptativo com base no tipo de perfil)
+  const totalSteps = 5; // 1. Tipo de perfil, 2. Informações básicas, 3. Específico do perfil, 4. Monetização, 5. Revisão
   
   // Verificar se o usuário está autenticado
   useEffect(() => {
@@ -90,178 +117,443 @@ export default function UserFormPage() {
       }
       
       setUser(session.user);
+      
+      // Preencher o email do usuário no formulário
+      setFormData(prev => ({
+        ...prev,
+        email: session.user.email || ''
+      }));
+      
+      // Verificar se o usuário já tem um perfil
+      try {
+        const { data: profile, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('user_id', session.user.id)
+          .single();
+        
+        if (error) {
+          console.error('Erro ao buscar perfil:', error);
+          return;
+        }
+      
+        if (profile && profile.onboarding_completed) {
+          router.push('/dashboard');
+        } else if (profile) {
+          // Preencher os dados existentes do perfil
+          setFormData(prev => ({
+            ...prev,
+            ...mapProfileToFormData(profile)
+          }));
+        }
+      } catch (error) {
+        console.error('Erro ao verificar perfil:', error);
+      }
     };
     
     checkUser();
   }, [router]);
   
+  // Função para mapear os dados do perfil do banco para o formato do formulário
+  const mapProfileToFormData = (profile: any): Partial<FormData> => {
+    return {
+      fullName: profile.full_name || '',
+      phoneNumber: profile.phone_number || '',
+      country: profile.country || 'BR',
+      birthDate: profile.birth_date || '',
+      document: profile.document || '',
+      address: profile.address || '',
+      language: profile.language || 'pt-BR',
+      profileType: profile.profile_type || 'CEO',
+      monetizationMethod: profile.monetization_method || '',
+      globalMonetization: profile.global_monetization || '',
+      digitalProductStrategy: profile.digital_product_strategy || false,
+      digitalProductType: profile.digital_product_type || [],
+      referralSource: profile.referral_source || '',
+      companyRevenue: profile.company_revenue || '',
+      globalSellingExperience: profile.global_selling_experience || '',
+      creatorExperienceLevel: profile.creator_experience_level || ''
+    };
+  };
+  
+  // Função para lidar com mudanças nos campos do formulário
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  
+  // Função para lidar com mudanças em checkboxes
+  const handleCheckboxChange = (name: string, checked: boolean) => {
+    setFormData(prev => ({
+      ...prev,
+      [name]: checked
+    }));
+  };
+  
+  // Função para lidar com mudanças em checkboxes múltiplos
+  const handleMultiCheckboxChange = (value: string) => {
+    setFormData(prev => {
+      const currentValues = [...prev.digitalProductType];
+      const index = currentValues.indexOf(value);
+      
+      if (index === -1) {
+        currentValues.push(value);
+      } else {
+        currentValues.splice(index, 1);
+      }
+      
+      return {
+        ...prev,
+        digitalProductType: currentValues
+      };
+    });
+  };
+  
+  // Função para definir o tipo de perfil
+  const setProfileType = (type: UserProfileType) => {
+    setFormData(prev => ({
+      ...prev,
+      profileType: type
+    }));
+  };
+  
+  // Função para obter o label de uma opção a partir do valor
+  const getOptionLabel = (options: { value: string; label: string }[], value: string) => {
+    const option = options.find(opt => opt.value === value);
+    return option ? option.label : value;
+  };
+  
+  // Função para avançar para o próximo passo
+  const nextStep = () => {
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+      window.scrollTo(0, 0);
+    }
+  };
+  
+  // Função para voltar ao passo anterior
+  const prevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+      window.scrollTo(0, 0);
+    }
+  };
+  
   // Função para salvar o perfil do usuário
   const saveUserProfile = async () => {
-    if (!selectedProfile || !user) return;
-    
-    setLoading(true);
+    if (!user) return;
     
     try {
+      setLoading(true);
+      
+      // Validar dados obrigatórios antes de salvar
+      const requiredFields = [
+        'fullName', 'email', 'phoneNumber', 'country', 'birthDate', 
+        'profileType', 'monetizationMethod', 'globalMonetization', 'referralSource'
+      ];
+      
+      const missingFields = requiredFields.filter(field => !formData[field as keyof FormData]);
+      
+      if (missingFields.length > 0) {
+        alert(`Por favor, preencha todos os campos obrigatórios: ${missingFields.join(', ')}`);
+        setLoading(false);
+        return;
+      }
+      
+      // Validações específicas por tipo de perfil
+      if (formData.profileType === 'CEO' && !formData.companyRevenue) {
+        alert('Por favor, informe a faixa de faturamento da sua empresa.');
+        setLoading(false);
+        return;
+      }
+      
+      if (formData.profileType === 'Associate' && !formData.globalSellingExperience) {
+        alert('Por favor, informe sua experiência como vendedor global.');
+        setLoading(false);
+        return;
+      }
+      
+      if (formData.profileType === 'UGC Creator' && !formData.creatorExperienceLevel) {
+        alert('Por favor, informe seu nível de experiência como creator.');
+        setLoading(false);
+        return;
+      }
+      
+      // Validar se selecionou pelo menos um tipo de produto digital quando tem estratégia
+      if (formData.digitalProductStrategy && (!formData.digitalProductType || formData.digitalProductType.length === 0)) {
+        alert('Por favor, selecione pelo menos um tipo de produto digital que planeja vender.');
+        setLoading(false);
+        return;
+      }
+      
+      // Mapear os dados do formulário para o formato do banco
+      const profileData = {
+        user_id: user.id,
+        full_name: formData.fullName,
+        email: formData.email,
+        phone_number: formData.phoneNumber,
+        country: formData.country,
+        birth_date: formData.birthDate,
+        document: formData.document,
+        language: formData.language,
+        profile_type: formData.profileType,
+        monetization_method: formData.monetizationMethod,
+        global_monetization: formData.globalMonetization,
+        digital_product_strategy: formData.digitalProductStrategy,
+        digital_product_type: formData.digitalProductType,
+        referral_source: formData.referralSource,
+        onboarding_completed: true,
+        created_at: formData.createdAt || new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+        company_revenue: formData.companyRevenue,
+        global_selling_experience: formData.globalSellingExperience,
+        creator_experience_level: formData.creatorExperienceLevel
+      };
+      
+      console.log('Salvando perfil com os dados:', profileData);
+      
       // Atualizar os metadados do usuário
-      const { error: updateError } = await supabase.auth.updateUser({
+      const { error: userUpdateError } = await supabase.auth.updateUser({
         data: {
-          profile_type: selectedProfile,
-          profile_completed: true
+          profile_type: formData.profileType,
+          onboarding_completed: true
         }
       });
       
-      if (updateError) {
-        console.error('Error updating user metadata:', updateError);
-        throw updateError;
+      if (userUpdateError) {
+        console.error('Erro ao atualizar metadados do usuário:', userUpdateError);
+        throw userUpdateError;
       }
       
       // Verificar se o perfil já existe
-      const { data: existingProfile } = await supabase
+      const { data: existingProfile, error: fetchError } = await supabase
         .from('profiles')
         .select('id')
         .eq('user_id', user.id)
         .single();
       
-      let profileError;
+      if (fetchError && fetchError.code !== 'PGRST116') { // PGRST116 é o código para "não encontrado"
+        console.error('Erro ao verificar perfil existente:', fetchError);
+        throw fetchError;
+      }
+      
+      let result;
       
       if (existingProfile) {
         // Atualizar perfil existente
-        const { error } = await supabase
+        result = await supabase
           .from('profiles')
-          .update({
-            profile_type: selectedProfile,
-            onboarding_completed: true,
-            updated_at: new Date().toISOString()
-          })
+          .update(profileData)
           .eq('user_id', user.id);
+          
+        if (result.error) {
+          console.error('Erro ao atualizar perfil:', result.error);
+          alert(`Erro ao atualizar perfil: ${result.error.message}`);
+          throw result.error;
+        }
         
-        profileError = error;
+        console.log('Perfil atualizado com sucesso!');
       } else {
-        // Inserir novo perfil
-        const { error } = await supabase
-          .from('profiles')
-          .insert({
-            id: user.id,
-            user_id: user.id,
-            profile_type: selectedProfile,
-            onboarding_completed: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          });
+        // Criar novo perfil com ID gerado
+        const newProfileData = {
+          ...profileData,
+          id: uuidv4() // Gerar UUID para o campo id
+        };
         
-        profileError = error;
+        result = await supabase
+          .from('profiles')
+          .insert([newProfileData]);
+          
+        if (result.error) {
+          console.error('Erro ao criar perfil:', result.error);
+          alert(`Erro ao criar perfil: ${result.error.message}`);
+          throw result.error;
+        }
+        
+        console.log('Perfil criado com sucesso!');
       }
-      
-      if (profileError) {
-        console.error('Error updating profile in database:', profileError);
-        throw profileError;
-      }
-      
-      console.log('Profile updated successfully');
       
       // Redirecionar para o dashboard
+      console.log('Perfil salvo com sucesso! Redirecionando para o dashboard...');
       router.push('/dashboard');
-      
-    } catch (error) {
-      console.error('Error saving profile:', error);
+    } catch (error: any) {
+      console.error('Erro ao salvar perfil:', error);
+      alert(`Ocorreu um erro ao salvar seu perfil: ${error?.message || 'Erro desconhecido'}`);
     } finally {
       setLoading(false);
     }
   };
   
-  // Função para avançar para a próxima etapa
-  const nextStep = () => {
-    if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      saveUserProfile();
+  // Renderizar o passo atual do formulário
+  const renderStep = () => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <ProfileTypeStep 
+            selectedProfile={formData.profileType} 
+            setSelectedProfile={setProfileType} 
+          />
+        );
+      case 2:
+        return (
+          <BasicInfoStep 
+            formData={formData} 
+            handleChange={handleChange} 
+          />
+        );
+      case 3:
+        // Renderizar o passo específico para o tipo de perfil selecionado
+        switch (formData.profileType) {
+          case 'CEO':
+            return (
+              <CEOSpecificStep 
+                formData={{
+                  companyRevenue: formData.companyRevenue
+                }} 
+                handleChange={handleChange} 
+              />
+            );
+          case 'Associate':
+            return (
+              <AssociateSpecificStep 
+                formData={{
+                  globalSellingExperience: formData.globalSellingExperience
+                }} 
+                handleChange={handleChange} 
+              />
+            );
+          case 'UGC Creator':
+            return (
+              <CreatorSpecificStep 
+                formData={{
+                  creatorExperienceLevel: formData.creatorExperienceLevel
+                }} 
+                handleChange={handleChange} 
+              />
+            );
+          default:
+            return null;
+        }
+      case 4:
+        return (
+          <MonetizationStep 
+            formData={formData} 
+            handleChange={handleChange} 
+            handleCheckboxChange={handleCheckboxChange}
+            handleMultiCheckboxChange={handleMultiCheckboxChange}
+          />
+        );
+      case 5:
+        return (
+          <ReviewStep 
+            formData={formData} 
+            getOptionLabel={getOptionLabel} 
+          />
+        );
+      default:
+        return null;
     }
   };
   
-  // Ícones para as opções de perfil
-  const CEOIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-    </svg>
-  );
+  // Verificar se o formulário está pronto para avançar
+  const canProceed = () => {
+    switch (currentStep) {
+      case 1:
+        return !!formData.profileType;
+      case 2:
+        return (
+          !!formData.fullName &&
+          !!formData.email &&
+          !!formData.phoneNumber &&
+          !!formData.country &&
+          !!formData.birthDate &&
+          (formData.country !== 'BR' || !!formData.document) &&
+          // Removida validação do campo address
+          !!formData.language
+        );
+      case 3:
+        switch (formData.profileType) {
+          case 'CEO':
+            return !!formData.companyRevenue;
+          case 'Associate':
+            return !!formData.globalSellingExperience;
+          case 'UGC Creator':
+            return !!formData.creatorExperienceLevel;
+          default:
+            return false;
+        }
+      case 4:
+        return (
+          !!formData.monetizationMethod &&
+          !!formData.globalMonetization &&
+          (!formData.digitalProductStrategy || formData.digitalProductType.length > 0) &&
+          !!formData.referralSource
+        );
+      case 5:
+        return true; // Sempre pode prosseguir na etapa de revisão
+      default:
+        return false;
+    }
+  };
   
-  const AssociateIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-    </svg>
-  );
-  
-  const CreatorIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-    </svg>
-  );
+  // Verificar se o usuário está autenticado antes de renderizar o formulário
+  if (!user) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div>
+      </div>
+    );
+  }
   
   return (
     <div className="min-h-screen bg-dark-800 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary-400 to-primary-700 mb-6 shadow-lg shadow-primary-900/30">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
-          </div>
-          <h1 className="text-3xl font-extrabold text-white font-gotham-black">
-            Complete seu perfil
-          </h1>
-          <p className="mt-3 text-base text-gray-400 max-w-sm mx-auto">
-            Precisamos de algumas informações para personalizar sua experiência
-          </p>
+          <h1 className="text-3xl font-bold text-white">Complete seu perfil</h1>
+          <p className="mt-2 text-gray-400">Precisamos de algumas informações para personalizar sua experiência</p>
         </div>
         
-        <div className="bg-dark-700/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-dark-600/50 mb-8">
+        <div className="mb-8">
           <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
-          
-          <div className="mt-8">
-            {currentStep === 1 && (
-              <div className="space-y-4">
-                <h2 className="text-xl font-medium text-white mb-6">Qual melhor perfil define você?</h2>
-                
-                <div className="space-y-4">
-                  <ProfileOption 
-                    title="CEO" 
-                    description="Você é dono ou lidera uma empresa ou produto digital"
-                    icon={<CEOIcon />}
-                    selected={selectedProfile === 'CEO'}
-                    onClick={() => setSelectedProfile('CEO')}
-                  />
-                  
-                  <ProfileOption 
-                    title="Associate" 
-                    description="Você trabalha em uma empresa ou é parte de um time"
-                    icon={<AssociateIcon />}
-                    selected={selectedProfile === 'Associate'}
-                    onClick={() => setSelectedProfile('Associate')}
-                  />
-                  
-                  <ProfileOption 
-                    title="UGC Creator" 
-                    description="Você cria conteúdo e é um influenciador digital"
-                    icon={<CreatorIcon />}
-                    selected={selectedProfile === 'UGC Creator'}
-                    onClick={() => setSelectedProfile('UGC Creator')}
-                  />
-                </div>
-              </div>
-            )}
-          </div>
         </div>
         
-        <div className="flex justify-end">
-          <Button
-            onClick={nextStep}
-            disabled={!selectedProfile || loading}
-            isLoading={loading}
-            variant="primary"
-            size="lg"
-          >
-            {currentStep === totalSteps ? "Finalizar" : "Próximo"}
-          </Button>
+        <div className="bg-dark-700 rounded-xl shadow-xl p-8 mb-8">
+          {renderStep()}
+        </div>
+        
+        <div className="flex justify-between">
+          {currentStep > 1 ? (
+            <Button
+              onClick={prevStep}
+              variant="outline"
+              disabled={loading}
+            >
+              Voltar
+            </Button>
+          ) : (
+            <div></div>
+          )}
+          
+          {currentStep < totalSteps ? (
+            <Button
+              onClick={nextStep}
+              disabled={!canProceed() || loading}
+              loading={loading}
+            >
+              Próximo
+            </Button>
+          ) : (
+            <Button
+              onClick={saveUserProfile}
+              disabled={!canProceed() || loading}
+              loading={loading}
+            >
+              {loading ? 'Salvando...' : 'Finalizar'}
+            </Button>
+          )}
         </div>
       </div>
     </div>

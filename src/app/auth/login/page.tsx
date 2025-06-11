@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { supabase, signInWithGoogle } from '@/lib/supabaseClient';
@@ -9,7 +9,8 @@ import { Checkbox } from '@/components/ui/Checkbox';
 import { EmailIcon, LockIcon, AlertIcon } from '@/components/ui/Icons';
 import { GoogleButton } from '@/components/ui';
 
-export default function LoginPage() {
+// Componente interno que usa useSearchParams
+function LoginContent() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -221,5 +222,16 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
+  );
+}
+
+// Componente principal que usa Suspense
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center min-h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div>
+    </div>}>
+      <LoginContent />
+    </Suspense>
   );
 }
