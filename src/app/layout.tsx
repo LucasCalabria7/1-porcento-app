@@ -3,6 +3,7 @@ import { Montserrat, Exo_2, Inter } from "next/font/google";
 import "./globals.css";
 import PublicLayout from '@/layouts/PublicLayout';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { LocaleProvider } from '@/contexts/LocaleProvider';
 
 // Geist fonts removed
 
@@ -38,7 +39,9 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`min-h-screen bg-white dark:bg-dark-800 ${montserrat.variable} ${exo2.variable} ${inter.variable} antialiased`}>
         <ThemeProvider>
-          {children}
+          <LocaleProvider>
+            {children}
+          </LocaleProvider>
         </ThemeProvider>
       </body>
     </html>

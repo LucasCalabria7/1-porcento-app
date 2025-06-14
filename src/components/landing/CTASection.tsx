@@ -1,6 +1,9 @@
 "use client";
 
+import { useTranslations } from 'next-intl';
+
 export default function CTASection() {
+  const t = useTranslations('ctaSection');
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
       {/* Background elements - Design moderno com gradientes e formas */}
@@ -17,17 +20,18 @@ export default function CTASection() {
           <div className="inline-block px-4 py-1.5 bg-primary-500/20 rounded-full backdrop-blur-sm mb-6">
             <p className="text-sm md:text-base font-medium text-primary-300">
               <span className="inline-block animate-pulse mr-2 w-2 h-2 rounded-full bg-primary-400"></span>
-              Transforme seu negócio hoje
+              {t('badge')}
             </p>
           </div>
           
           <h2 className="text-3xl md:text-4xl lg:text-6xl font-gotham-black text-white mb-8 leading-tight">
-            Pronto para fazer parte do <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-primary-600 relative">1%</span> que transforma o mundo?
+            {t.rich('title', {
+              span: (chunks) => <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-primary-600 relative">{chunks}</span>
+            })}
           </h2>
           
           <p className="text-lg md:text-xl text-primary-200/90 max-w-3xl mx-auto mb-10">
-            Junte-se ao nosso ecossistema e tenha acesso a tecnologias inovadoras, 
-            estratégias comprovadas e uma comunidade de alto desempenho.
+            {t('subtitle')}
           </p>
         </div>
         
@@ -45,7 +49,7 @@ export default function CTASection() {
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-32 bg-gradient-to-r from-primary-500/5 to-indigo-500/5 rotate-45 blur-3xl"></div>
               
               <div className="relative z-10">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-8 text-center">Escolha como deseja participar</h3>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-8 text-center">{t('chooseParticipation')}</h3>
                 
                 {/* Grid de botões WhatsApp - Design moderno com efeitos de hover */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -64,8 +68,8 @@ export default function CTASection() {
                         </svg>
                       </div>
                       <div>
-                        <span className="block text-sm text-white/80 mb-0.5">Participe do</span>
-                        <span className="font-bold">Grupo de Tecnologia</span>
+                        <span className="block text-sm text-white/80 mb-0.5">{t('technologyGroup.joinThe')}</span>
+                        <span className="font-bold">{t('technologyGroup.groupName')}</span>
                       </div>
                     </div>
                   </a>
@@ -85,8 +89,8 @@ export default function CTASection() {
                         </svg>
                       </div>
                       <div>
-                        <span className="block text-sm text-white/80 mb-0.5">Participe do</span>
-                        <span className="font-bold">Grupo de Vendas</span>
+                        <span className="block text-sm text-white/80 mb-0.5">{t('salesGroup.joinThe')}</span>
+                        <span className="font-bold">{t('salesGroup.groupName')}</span>
                       </div>
                     </div>
                   </a>
@@ -104,9 +108,9 @@ export default function CTASection() {
                         <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                         </svg>
-                        Suporte
+                        {t('support.badge')}
                       </span>
-                      <h3 className="text-xl font-medium text-white">Ficou alguma dúvida?</h3>
+                      <h3 className="text-xl font-medium text-white">{t('support.title')}</h3>
                     </div>
                   
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -121,7 +125,7 @@ export default function CTASection() {
                             <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2m0 2a8 8 0 0 0-8 8c0 4.418 3.582 8 8 8s8-3.582 8-8a8 8 0 0 0-8-8m0 3a3 3 0 0 1 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3m0 7.5c2.03 0 3.82 1.409 4.5 3.5-1.23.865-2.773 1.5-4.5 1.5-1.727 0-3.27-.635-4.5-1.5.68-2.091 2.47-3.5 4.5-3.5z" />
                           </svg>
                         </div>
-                        Especialista em Tecnologia
+                        {t('support.technologySpecialist')}
                       </a>
                       <a 
                         href="https://wa.me/5511888888888" 
@@ -134,7 +138,7 @@ export default function CTASection() {
                             <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2m0 2a8 8 0 0 0-8 8c0 4.418 3.582 8 8 8s8-3.582 8-8a8 8 0 0 0-8-8m0 3a3 3 0 0 1 3 3c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3m0 7.5c2.03 0 3.82 1.409 4.5 3.5-1.23.865-2.773 1.5-4.5 1.5-1.727 0-3.27-.635-4.5-1.5.68-2.091 2.47-3.5 4.5-3.5z" />
                           </svg>
                         </div>
-                        Especialista em Vendas
+                        {t('support.salesSpecialist')}
                       </a>
                     </div>
                   </div>

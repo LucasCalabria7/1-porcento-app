@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from './Button';
 import { supabase } from '@/lib/supabaseClient';
+import { useTranslations } from 'next-intl';
 
 interface ProfileCompletionModalProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ export const ProfileCompletionModal: React.FC<ProfileCompletionModalProps> = ({ 
   const [userName, setUserName] = useState<string>('');
   const [profileProgress, setProfileProgress] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
+  const t = useTranslations('profileCompletionModal');
 
   useEffect(() => {
     if (isOpen) {
@@ -87,19 +89,18 @@ export const ProfileCompletionModal: React.FC<ProfileCompletionModalProps> = ({ 
               </div>
               <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 className="text-lg leading-6 font-medium text-white">
-                  Olá, {userName}! Complete seu perfil
+                  {t('title', { name: userName })}
                 </h3>
                 <div className="mt-2">
                   <p className="text-sm text-gray-300">
-                    Para acessar o dashboard completo, precisamos de algumas informações adicionais sobre você. 
-                    Complete seu perfil para desbloquear todas as funcionalidades da plataforma.
+                    {t('description')}
                   </p>
                   <div className="mt-3 p-3 bg-dark-600 rounded-lg">
-                    <p className="text-xs text-gray-400 mb-1">Benefícios de completar seu perfil:</p>
+                    <p className="text-xs text-gray-400 mb-1">{t('benefitsTitle')}</p>
                     <ul className="text-xs text-gray-300 list-disc pl-4 space-y-1">
-                      <li>Acesso a todas as funcionalidades da plataforma</li>
-                      <li>Experiência personalizada baseada no seu perfil</li>
-                      <li>Recomendações e insights relevantes para seus objetivos</li>
+                      <li>{t('benefits.access')}</li>
+                      <li>{t('benefits.experience')}</li>
+                      <li>{t('benefits.insights')}</li>
                     </ul>
                   </div>
                 </div>
@@ -121,10 +122,10 @@ export const ProfileCompletionModal: React.FC<ProfileCompletionModalProps> = ({ 
               {loading ? (
                 <>
                   <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent mr-2"></span>
-                  Redirecionando...
+                  {t('redirectingText')}
                 </>
               ) : (
-                'Completar perfil'
+                t('completeButton')
               )}
             </Button>
           </div>
@@ -136,7 +137,7 @@ export const ProfileCompletionModal: React.FC<ProfileCompletionModalProps> = ({ 
                   <div className="h-2 w-2 rounded-full bg-primary-500 pulse-animation"></div>
                 </div>
                 <p className="ml-3 text-xs text-gray-400">
-                  Seu perfil está {profileProgress}% completo
+                  {t('progressText', { progress: profileProgress })}
                 </p>
               </div>
               <div className="w-full bg-dark-600 rounded-full h-1.5">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormField, SelectInput } from '../components';
 import { companyRevenueOptions } from '../types';
+import { useTranslations } from 'next-intl';
 
 interface CEOSpecificStepProps {
   formData: {
@@ -10,19 +11,21 @@ interface CEOSpecificStepProps {
 }
 
 const CEOSpecificStep: React.FC<CEOSpecificStepProps> = ({ formData, handleChange }) => {
+  const t = useTranslations('userform');
+  
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-medium text-white mb-6">Informações específicas para CEOs</h2>
+      <h2 className="text-xl font-medium text-white mb-6">{t('steps.ceoSpecific.title')}</h2>
       
       <div className="space-y-6">
-        <FormField label="Faixa de faturamento mensal da sua empresa" required>
+        <FormField label={t('steps.ceoSpecific.fields.companyRevenue.label')} required>
           <SelectInput
             id="companyRevenue"
             name="companyRevenue"
             value={formData.companyRevenue || ''}
             onChange={handleChange}
             options={companyRevenueOptions}
-            placeholder="Selecione a faixa de faturamento"
+            placeholder={t('steps.ceoSpecific.fields.companyRevenue.placeholder')}
             required
           />
         </FormField>

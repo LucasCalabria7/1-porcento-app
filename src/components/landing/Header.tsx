@@ -3,8 +3,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import LanguageSelector from '@/components/LanguageSelector';
 
 export default function Header() {
+  const t = useTranslations();
   const [scrolled, setScrolled] = useState(false);
   
   useEffect(() => {
@@ -42,24 +45,26 @@ export default function Header() {
         </Link>
         
         <nav className="hidden md:flex items-center space-x-6">
-          <a href="#inicio" className="text-sm font-medium text-white hover:text-primary-300 transition-colors">Início</a>
-          <a href="#sobre" className="text-sm font-medium text-white hover:text-primary-300 transition-colors">Sobre</a>
-          <a href="#nucleos" className="text-sm font-medium text-white hover:text-primary-300 transition-colors">Núcleos</a>
-          <a href="#depoimentos" className="text-sm font-medium text-white hover:text-primary-300 transition-colors">Depoimentos</a>
-          <a href="#faq" className="text-sm font-medium text-white hover:text-primary-300 transition-colors">FAQ</a>
+          <a href="#inicio" className="text-sm font-medium text-white hover:text-primary-300 transition-colors">{t('nav.home')}</a>
+          <a href="#sobre" className="text-sm font-medium text-white hover:text-primary-300 transition-colors">{t('nav.about')}</a>
+          <a href="#nucleos" className="text-sm font-medium text-white hover:text-primary-300 transition-colors">{t('nav.cores')}</a>
+          <a href="#depoimentos" className="text-sm font-medium text-white hover:text-primary-300 transition-colors">{t('nav.testimonials')}</a>
+          <a href="#faq" className="text-sm font-medium text-white hover:text-primary-300 transition-colors">{t('nav.faq')}</a>
           
-          <div className="ml-6 flex space-x-3">
+          <div className="ml-6 flex items-center space-x-3">
+            <LanguageSelector />
+            
             <Link 
               href="/auth/login" 
               className="px-4 py-2 rounded-md text-sm font-medium bg-dark-700/50 hover:bg-dark-600 text-white transition-colors border border-dark-600"
             >
-              Login
+              {t('common.login')}
             </Link>
             <Link 
               href="/auth/register" 
               className="px-4 py-2 rounded-md text-sm font-medium bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 text-white shadow-lg shadow-primary-700/30 hover:shadow-primary-700/50 transition-all duration-300"
             >
-              Cadastre-se
+              {t('common.register')}
             </Link>
           </div>
         </nav>

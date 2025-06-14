@@ -1,0 +1,447 @@
+{
+  "common": {
+    "login": "Entrar",
+    "register": "Cadastre-se",
+    "language": "Idioma"
+  },
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "cores": "Núcleos",
+    "testimonials": "Depoimentos",
+    "faq": "FAQ"
+  },
+  "landing": {
+    "title": "Transformando vidas através da educação financeira",
+    "subtitle": "Aprenda a investir e construir seu patrimônio com a comunidade Um Porcento"
+  },
+  "hero": {
+    "forCompanies": "Para Empresas",
+    "scaleYourSales": "Escale suas vendas com nosso exército de afiliados",
+    "globalSellersNetwork": "Acesso a uma rede global de vendedores qualificados",
+    "completePlatform": "Plataforma completa para gerenciar seus produtos digitais",
+    "noAdsNeeded": "Sem precisar de investir em anúncios",
+    "trainedSellers": "+1.000 vendedores altamente treinados em seu produto",
+    "forGlobalSellers": "Para Vendedores Globais",
+    "sellBestProducts": "Venda os melhores produtos com recorrência global",
+    "accessToBestProducts": "Acesso aos melhores produtos digitais do mercado",
+    "attractiveCommissions": "Comissões atrativas e pagamentos recorrentes",
+    "trainingAndSupport": "Treinamento e suporte para maximizar seus resultados",
+    "globalRecurrence": "Produtos de recorrência global, monetize em qualquer moeda do mundo",
+    "knowTechCore": "Conheça nosso núcleo de tecnologia",
+    "knowSalesCore": "Conheça nosso núcleo de vendas"
+  },
+  "about": {
+    "forCompanies": "Para Empresas",
+    "transformProduct": "Transforme seu produto digital em um sucesso de vendas",
+    "companyDescription": "A 1% World conecta sua empresa a uma rede global de vendedores qualificados, prontos para escalar suas vendas com estratégias comprovadas e tecnologia de ponta.",
+    "forGlobalSellers": "Para Vendedores Globais",
+    "monetizeKnowledge": "Monetize seu conhecimento e alcance vendendo os melhores produtos",
+    "sellersDescription": "Junte-se à comunidade de elite de vendedores da 1% World e tenha acesso aos melhores produtos digitais, treinamentos exclusivos e comissões atrativas.",
+    "ecosystem": "O Ecossistema 1% World",
+    "ecosystemDescription": "A 1% World é mais que uma plataforma, é um ecossistema completo que une tecnologia e estratégias de vendas para criar um ambiente onde empresas e vendedores globais prosperam juntos. Nossa missão é transformar o mercado de produtos digitais, oferecendo soluções inovadoras que geram resultados extraordinários para todos os envolvidos.",
+    "innovation": "Inovação",
+    "community": "Comunidade",
+    "results": "Resultados"
+  },
+  "faq": {
+    "title": "Perguntas Frequentes",
+    "subtitle": "Encontre respostas para as dúvidas mais comuns sobre a 1% World.",
+    "questions": [
+      {
+        "question": "O que é a 1% World?",
+        "answer": "A 1% World é um ecossistema completo que conecta empresas e vendedores globais, oferecendo tecnologia de ponta e estratégias de vendas para maximizar resultados no mercado de produtos digitais."
+      },
+      {
+        "question": "Como funciona para empresas?",
+        "answer": "Empresas podem cadastrar seus produtos digitais na plataforma, configurar programas de afiliados e ter acesso a uma rede global de vendedores qualificados, além de ferramentas e estratégias para escalar seus negócios."
+      },
+      {
+        "question": "Como funciona para vendedores?",
+        "answer": "Vendedores podem se cadastrar como afiliados, escolher produtos de qualidade para promover, receber treinamentos exclusivos e ganhar comissões atrativas por cada venda realizada."
+      },
+      {
+        "question": "Quais são os núcleos da 1% World?",
+        "answer": "A 1% World possui dois núcleos principais: o Núcleo de Tecnologia, focado em inovação e soluções tecnológicas, e o Núcleo de Vendas, especializado em estratégias e mentoria para maximizar resultados."
+      },
+      {
+        "question": "Como faço para participar da comunidade?",
+        "answer": "Você pode se cadastrar na plataforma como empresa ou vendedor, e também participar dos grupos de WhatsApp específicos para cada núcleo, onde compartilhamos conteúdos exclusivos e oportunidades."
+      },
+      {
+        "question": "Quais tipos de produtos posso vender ou cadastrar?",
+        "answer": "A plataforma é focada em produtos digitais como cursos, e-books, mentorias, softwares, assinaturas e outros conteúdos que podem ser entregues digitalmente."
+      }
+    ]
+  },
+  "footer": {
+    "description": "Transformando o mercado de produtos digitais com tecnologia inovadora e estratégias de vendas de alto desempenho.",
+    "cores": "Nossos Núcleos",
+    "techCore": "1% World Tecnologia",
+    "salesCore": "1% World Vendas",
+    "aboutEcosystem": "Sobre o Ecossistema",
+    "faq": "Perguntas Frequentes",
+    "certifications": "Certificações",
+    "copyright": "Todos os direitos reservados.",
+    "terms": "Termos",
+    "privacy": "Privacidade",
+    "support": "Suporte"
+  },
+  "testimonials": {
+    "title": "Histórias de Sucesso",
+    "subtitle": "Conheça algumas das pessoas que transformaram seus negócios e carreiras através do ecossistema 1% World.",
+    "items": [
+      {
+        "quote": "A plataforma 1% World transformou completamente meu negócio digital. Consegui aumentar minhas vendas em mais de 300% em apenas 3 meses.",
+        "name": "Carlos Silva",
+        "role": "Empresário Digital"
+      },
+      {
+        "quote": "Como afiliado, nunca tive tanto suporte e ferramentas de qualidade. A comunidade é incrível e os treinamentos são de alto nível.",
+        "name": "Ana Oliveira",
+        "role": "Afiliada Premium"
+      },
+      {
+        "quote": "Meu produto digital estava estagnado até conhecer a 1% World. A estratégia de afiliados mudou tudo e agora tenho vendas recorrentes.",
+        "name": "Marcos Santos",
+        "role": "Criador de Conteúdo"
+      },
+      {
+        "quote": "A mentoria personalizada foi fundamental para o meu crescimento. Aprendi estratégias que nunca imaginei e os resultados são impressionantes.",
+        "name": "Juliana Costa",
+        "role": "Empreendedora Digital"
+      }
+    ]
+  },
+  "howItWorks": {
+    "title": "Como Funciona",
+    "subtitle": "Nossa plataforma foi desenvolvida para conectar empresas e vendedores globais de forma eficiente e lucrativa para ambos os lados.",
+    "forCompanies": "Para empresas",
+    "forSellers": "Para vendedores globais",
+    "companies": {
+      "slides": [
+        {
+          "title": "Insira detalhes sobre seu produto em nossa plataforma",
+          "items": [
+            { "label": "Título do produto", "value": "AgentAI - Seu SDR com IA" },
+            { "label": "Preço", "value": "U$ 19.90/mês" },
+            { "label": "Comissão", "value": "50%" }
+          ]
+        },
+        {
+          "title": "Apresente seu produto para nossos vendedores globais",
+          "items": [
+            { "label": "Pitch de apresentação", "value": "Vídeo que te torna único" },
+            { "label": "Arquivos de compartilhamento", "value": "Criativos validados" },
+            { "label": "Dados de compartilhamento", "value": "Métricas já analisadas" }
+          ]
+        },
+        {
+          "title": "Integração com seu financeiro",
+          "items": [
+            { "label": "Integração com Gateway", "value": "Utilize a sua ou a nossa plataforma" },
+            { "label": "Projeção de monetização", "value": "Aumente faturamento e MRR" },
+            { "label": "Gamifique seus ganhos", "value": "Conexão única com top vendedores" }
+          ]
+        }
+      ]
+    },
+    "sellers": {
+      "slides": [
+        {
+          "title": "Descubra produtos de tecnologia e recorrência",
+          "items": [
+            { "label": "Recorrência", "value": "Construa renda sólida e previsível" },
+            { "label": "Globalização", "value": "Venda para qualquer lugar do mundo" },
+            { "label": "Estrutura", "value": "Monte sua própria estrutura digital" }
+          ]
+        },
+        {
+          "title": "Crie seu próprio império e seja criador de produtos",
+          "items": [
+            { "label": "Transformação", "value": "Tenha seu próprio projeto além de vender outros já validados" },
+            { "label": "Mentoria", "value": "Suporte completo desde estratégias até monetização" },
+            { "label": "Produtos diversos", "value": "Micro-SaaS, SaaS, Agentes de IA, escolhe o que mais se identifica" }
+          ]
+        },
+        {
+          "title": "Comunidade única e exclusiva focada em resultados e crescimento conjunto",
+          "stats": [
+            { "value": "1000+", "label": "Membros Ativos" },
+            { "value": "24/7", "label": "Suporte Dedicado" },
+            { "value": "50+", "label": "Países" },
+            { "value": "100+", "label": "Mentorias Realizadas" },
+            { "value": "R$1M+", "label": "GMV Mensal" },
+            { "value": "10+", "label": "Eventos Anuais" }
+          ]
+        }
+      ]
+    }
+  },
+  "ctaSection": {
+    "badge": "Transforme seu negócio hoje",
+    "title": "Pronto para fazer parte do 1% que transforma o mundo?",
+    "subtitle": "Junte-se ao nosso ecossistema e tenha acesso a tecnologias inovadoras, estratégias comprovadas e uma comunidade de alto desempenho.",
+    "chooseParticipation": "Escolha como deseja participar",
+    "technologyGroup": {
+      "joinThe": "Participe do",
+      "groupName": "Grupo de Tecnologia"
+    },
+    "salesGroup": {
+      "joinThe": "Participe do",
+      "groupName": "Grupo de Vendas"
+    },
+    "support": {
+      "badge": "Suporte",
+      "title": "Ficou alguma dúvida?",
+      "technologySpecialist": "Especialista em Tecnologia",
+      "salesSpecialist": "Especialista em Vendas"
+    }
+  },
+  "nucleusSection": {
+    "title": "Núcleos 1% World",
+    "salesCard": {
+      "title": "1% World Vendas",
+      "description": "Nosso núcleo de vendas reúne os melhores profissionais do mercado para ajudar empresas a escalar seus resultados e vendedores a maximizar seus ganhos.",
+      "features": [
+        {
+          "title": "Estratégias",
+          "description": "Metodologias comprovadas para aumentar conversões e maximizar resultados em vendas."
+        },
+        {
+          "title": "Mentoria",
+          "description": "Acompanhamento personalizado para desenvolver suas habilidades de vendas."
+        }
+      ],
+      "whatsappButton": "Grupo WhatsApp",
+      "accessButton": "Acessar Núcleo"
+    },
+    "techCard": {
+      "title": "1% World Tecnologia",
+      "description": "Nosso núcleo de tecnologia desenvolve soluções inovadoras para impulsionar o crescimento de empresas e vendedores no mundo digital Para donos de empresas digitais.",
+      "features": [
+        {
+          "title": "Inovação",
+          "description": "Tecnologias de ponta para otimizar processos e maximizar resultados, Crie soluções únicas no digital."
+        },
+        {
+          "title": "Comunidade",
+          "description": "Rede de profissionais e recursos para acelerar seu crescimento, faça conexão com os 1% que dominam o mercado digital."
+        }
+      ],
+      "whatsappButton": "Grupo WhatsApp",
+      "accessButton": "Acessar Núcleo"
+    }
+  },
+  "auth": {
+    "login": {
+      "pageTitle": "Entre na sua conta",
+      "pageDescription": "Acesse sua conta para gerenciar seus produtos digitais",
+      "googleButton": "Entrar com Google",
+      "orContinueWithEmail": "ou continue com email",
+      "emailLabel": "Email",
+      "emailPlaceholder": "seu@email.com",
+      "passwordLabel": "Senha",
+      "passwordPlaceholder": "••••••••",
+      "rememberMe": "Mantenha-me conectado",
+      "forgotPassword": "Esqueceu a senha?",
+      "loginButton": "Entrar",
+      "loggingIn": "Entrando...",
+      "noAccount": "Não tem uma conta?",
+      "registerNow": "Registre-se agora",
+      "errors": {
+        "authFailed": "Falha na autenticação com Google. Por favor, tente novamente.",
+        "authError": "Ocorreu um erro durante a autenticação. Por favor, tente novamente.",
+        "googleError": "Erro ao conectar com Google"
+      }
+    },
+    "register": {
+      "pageTitle": "Crie sua conta",
+      "pageDescription": "Comece a vender seus produtos digitais hoje mesmo",
+      "googleButton": "Registrar com Google",
+      "orContinueWithEmail": "ou continue com email",
+      "nameLabel": "Nome Completo",
+      "namePlaceholder": "Seu nome completo",
+      "emailLabel": "Email",
+      "emailPlaceholder": "seu@email.com",
+      "passwordLabel": "Senha",
+      "passwordPlaceholder": "Sua senha",
+      "confirmPasswordLabel": "Confirmar Senha",
+      "confirmPasswordPlaceholder": "Confirme sua senha",
+      "termsText": "Eu concordo com os",
+      "termsLink": "Termos de Serviço",
+      "andText": "e",
+      "privacyLink": "Política de Privacidade",
+      "createAccountButton": "Criar Conta",
+      "haveAccount": "Já tem uma conta?",
+      "loginLink": "Faça login",
+      "errors": {
+        "passwordsNotMatch": "Passwords do not match",
+        "accountCreation": "Error creating account",
+        "googleError": "Erro ao conectar com Google"
+      }
+    }
+  },
+  "profileCompletionModal": {
+    "title": "Olá, {name}! Complete seu perfil",
+    "description": "Para acessar o dashboard completo, precisamos de algumas informações adicionais sobre você. Complete seu perfil para desbloquear todas as funcionalidades da plataforma.",
+    "benefitsTitle": "Benefícios de completar seu perfil:",
+    "benefits": {
+      "access": "Acesso a todas as funcionalidades da plataforma",
+      "experience": "Experiência personalizada baseada no seu perfil",
+      "insights": "Recomendações e insights relevantes para seus objetivos"
+    },
+    "completeButton": "Completar perfil",
+    "redirectingText": "Redirecionando...",
+    "progressText": "Seu perfil está {progress}% completo"
+  },
+  "userform": {
+    "loading": "Carregando...",
+    "pageTitle": "Complete seu perfil",
+    "pageDescription": "Precisamos de algumas informações para personalizar sua experiência",
+    "navigation": {
+      "back": "Voltar",
+      "next": "Próximo",
+      "finish": "Finalizar",
+      "saving": "Salvando..."
+    },
+    "steps": {
+      "profileType": {
+        "title": "Qual melhor perfil define você?",
+        "options": {
+          "ceo": {
+            "title": "CEO",
+            "description": "Você é dono ou lidera uma empresa ou produto digital"
+          },
+          "associate": {
+            "title": "Associate",
+            "description": "Você trabalha em uma empresa ou é parte de um time"
+          },
+          "creator": {
+            "title": "UGC Creator",
+            "description": "Você cria conteúdo e é um influenciador digital"
+          }
+        }
+      },
+      "basicInfo": {
+        "title": "Informações Básicas",
+        "subtitle": "Preencha seus dados pessoais",
+        "fullName": {
+          "label": "Nome completo",
+          "placeholder": "Digite seu nome completo"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Digite seu email"
+        },
+        "phoneNumber": {
+          "label": "Telefone",
+          "placeholder": "Digite seu telefone"
+        },
+        "country": {
+          "label": "País",
+          "placeholder": "Selecione seu país"
+        },
+        "birthDate": {
+          "label": "Data de nascimento",
+          "placeholder": "DD/MM/AAAA"
+        },
+        "document": {
+          "label": "CPF",
+          "placeholder": "Digite seu CPF"
+        },
+        "address": {
+          "label": "Endereço",
+          "placeholder": "Digite seu endereço completo"
+        },
+        "language": {
+          "label": "Idioma preferido",
+          "placeholder": "Selecione seu idioma"
+        }
+      },
+      "ceoSpecific": {
+        "title": "Informações da Empresa",
+        "subtitle": "Conte-nos sobre seu negócio",
+        "companyRevenue": {
+          "label": "Faturamento anual da empresa",
+          "placeholder": "Selecione a faixa de faturamento"
+        }
+      },
+      "associateSpecific": {
+        "title": "Experiência Profissional",
+        "subtitle": "Conte-nos sobre sua experiência",
+        "globalSellingExperience": {
+          "label": "Experiência como vendedor global",
+          "placeholder": "Selecione sua experiência"
+        }
+      },
+      "creatorSpecific": {
+        "title": "Experiência como Creator",
+        "subtitle": "Conte-nos sobre sua experiência como creator",
+        "creatorExperienceLevel": {
+          "label": "Nível de experiência como creator",
+          "placeholder": "Selecione seu nível de experiência"
+        }
+      },
+      "monetization": {
+        "title": "Estratégia de Monetização",
+        "subtitle": "Como você planeja monetizar seu negócio",
+        "monetizationMethod": {
+          "label": "Método de monetização principal",
+          "placeholder": "Selecione o método principal"
+        },
+        "globalMonetization": {
+          "label": "Monetização global",
+          "placeholder": "Selecione sua estratégia global"
+        },
+        "digitalProductStrategy": {
+          "label": "Você planeja vender produtos digitais?"
+        },
+        "digitalProductType": {
+          "label": "Quais tipos de produtos digitais você planeja vender?",
+          "selectAtLeastOne": "Selecione pelo menos uma opção"
+        },
+        "referralSource": {
+          "label": "Como você conheceu nossa plataforma?",
+          "placeholder": "Selecione uma opção"
+        }
+      },
+      "review": {
+        "title": "Revisão de Informações",
+        "subtitle": "Verifique se todas as informações estão corretas",
+        "profileType": "Tipo de Perfil",
+        "personalInfo": "Informações Pessoais",
+        "fullName": "Nome Completo",
+        "email": "Email",
+        "phoneNumber": "Telefone",
+        "country": "País",
+        "birthDate": "Data de Nascimento",
+        "document": "CPF",
+        "address": "Endereço",
+        "language": "Idioma Preferido",
+        "businessInfo": "Informações do Negócio",
+        "companyRevenue": "Faturamento da Empresa",
+        "globalSellingExperience": "Experiência como Vendedor Global",
+        "creatorExperienceLevel": "Nível de Experiência como Creator",
+        "monetizationStrategy": "Estratégia de Monetização",
+        "monetizationMethod": "Método de Monetização",
+        "globalMonetization": "Monetização Global",
+        "digitalProductStrategy": "Venda de Produtos Digitais",
+        "digitalProductTypes": "Tipos de Produtos Digitais",
+        "referralSource": "Como nos Conheceu",
+        "yes": "Sim",
+        "no": "Não"
+      }
+    },
+    "validations": {
+      "requiredFields": "Por favor, preencha todos os campos obrigatórios: {fields}",
+      "companyRevenue": "Por favor, informe a faixa de faturamento da sua empresa.",
+      "globalSellingExperience": "Por favor, informe sua experiência como vendedor global.",
+      "creatorExperienceLevel": "Por favor, informe seu nível de experiência como creator.",
+      "digitalProductType": "Por favor, selecione pelo menos um tipo de produto digital que planeja vender.",
+      "updateError": "Erro ao atualizar perfil: {message}",
+      "createError": "Erro ao criar perfil: {message}",
+      "genericError": "Ocorreu um erro ao salvar seu perfil: {message}"
+    }
+  }
+}

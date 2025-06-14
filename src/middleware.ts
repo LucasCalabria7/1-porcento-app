@@ -2,10 +2,22 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { detectLocale, supportedLocales } from '@/lib/locale-utils';
 
 export async function middleware(request: NextRequest) {
-  // Criar cliente do Supabase para o middleware
+  // Get the locale from cookie, IP detection, or default to pt-BR
+  const locale = detectLocale(request);
+  
+  // Create response object
   const res = NextResponse.next();
+  
+  // Set the locale cookie if it doesn't exist
+  if (!request.cookies.has('NEXT_LOCALE')) {
+    res.cookies.set('NEXT_LOCALE', locale, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 365, // 1 year
+    });
+  }
   
   // Criar cliente Supabase usando o novo método do @supabase/ssr
   const supabase = createServerClient(
@@ -74,5 +86,7 @@ export const config = {
   matcher: [
     // Aplicar a todas as rotas administrativas
     '/admin/:path*',
+    // Apply to all routes except for API routes and static files
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ],
 };

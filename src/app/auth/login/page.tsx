@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/Input';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { EmailIcon, LockIcon, AlertIcon } from '@/components/ui/Icons';
 import { GoogleButton } from '@/components/ui';
+import { useTranslations } from 'next-intl';
 
 // Componente interno que usa useSearchParams
 function LoginContent() {
@@ -19,18 +20,19 @@ function LoginContent() {
   const [rememberMe, setRememberMe] = useState(true); // Ativado por padrão
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations('auth.login');
   
   // Verificar se há erros na URL
   useEffect(() => {
     const errorParam = searchParams.get('error');
     if (errorParam) {
       if (errorParam === 'auth-callback-failed') {
-        setError('Falha na autenticação com Google. Por favor, tente novamente.');
+        setError(t('errors.authFailed'));
       } else if (errorParam === 'auth-callback-error') {
-        setError('Ocorreu um erro durante a autenticação. Por favor, tente novamente.');
+        setError(t('errors.authError'));
       }
     }
-  }, [searchParams]);
+  }, [searchParams, t]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,7 +97,7 @@ function LoginContent() {
       // O redirecionamento será tratado pelo OAuth e pela página de callback
     } catch (error) {
       console.error('Google login error:', error);
-      setError(error instanceof Error ? error.message : 'Erro ao conectar com Google');
+      setError(error instanceof Error ? error.message : t('errors.googleError'));
       setIsGoogleLoading(false);
     }
   };
@@ -110,10 +112,10 @@ function LoginContent() {
               </svg>
             </div>
             <h2 className="text-3xl font-extrabold text-white font-gotham-black">
-              Entre na sua conta
+              {t('pageTitle')}
             </h2>
             <p className="mt-3 text-base text-gray-400 max-w-sm mx-auto">
-              Acesse sua conta para gerenciar seus produtos digitais
+              {t('pageDescription')}
             </p>
           </div>
           
@@ -132,7 +134,7 @@ function LoginContent() {
                 <GoogleButton 
                   onClick={handleGoogleSignIn} 
                   isLoading={isGoogleLoading} 
-                  text="Entrar com Google" 
+                  text={t('googleButton')} 
                 />
               </div>
               
@@ -141,7 +143,7 @@ function LoginContent() {
                   <div className="w-full border-t border-dark-600"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-dark-700/50 text-gray-400">ou continue com email</span>
+                  <span className="px-2 bg-dark-700/50 text-gray-400">{t('orContinueWithEmail')}</span>
                 </div>
               </div>
               
@@ -155,9 +157,9 @@ function LoginContent() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="seu@email.com"
+                    placeholder={t('emailPlaceholder')}
                     disabled={loading}
-                    label="Email"
+                    label={t('emailLabel')}
                     leftIcon={<EmailIcon />}
                   />
                   
@@ -169,9 +171,9 @@ function LoginContent() {
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
+                    placeholder={t('passwordPlaceholder')}
                     disabled={loading}
-                    label="Senha"
+                    label={t('passwordLabel')}
                     leftIcon={<LockIcon />}
                   />
                 </div>
@@ -180,14 +182,14 @@ function LoginContent() {
                   <Checkbox
                     id="remember-me"
                     name="remember-me"
-                    label="Mantenha-me conectado"
+                    label={t('rememberMe')}
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
                   />
 
                   <div className="text-sm">
                     <a href="#" className="font-medium text-primary-400 hover:text-primary-300 transition-colors">
-                      Esqueceu a senha?
+                      {t('forgotPassword')}
                     </a>
                   </div>
                 </div>
@@ -202,7 +204,7 @@ function LoginContent() {
                     isLoading={loading}
                     leftIcon={!loading ? <LockIcon className="text-primary-300" /> : undefined}
                   >
-                    {loading ? "Entrando..." : "Entrar"}
+                    {loading ? t('loggingIn') : t('loginButton')}
                   </Button>
                 </div>
               </form>
@@ -210,12 +212,12 @@ function LoginContent() {
             
             <div className="mt-8 text-center">
               <p className="text-sm text-gray-400">
-                Não tem uma conta?{' '}
+                {t('noAccount')}{' '}
                 <Link
                   href="/auth/register"
                   className="font-medium text-primary-400 hover:text-primary-300 transition-colors"
                 >
-                  Registre-se agora
+                  {t('registerNow')}
                 </Link>
               </p>
             </div>
