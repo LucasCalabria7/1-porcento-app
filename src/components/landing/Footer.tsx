@@ -2,8 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export default function Footer() {
+  const t = useTranslations();
   return (
     <footer className="bg-dark-800 border-t border-dark-700">
       <div className="max-w-7xl mx-auto px-6 py-8">
@@ -22,8 +24,7 @@ export default function Footer() {
               <span className="font-gotham-black text-xl text-white tracking-tight">Um<span className="font-gotham-thin bg-clip-text text-transparent bg-gradient-to-r from-primary-300 to-primary-500">porcento</span></span>
             </Link>
             <p className="text-gray-400 text-sm mb-4">
-              Transformando o mercado de produtos digitais com tecnologia 
-              inovadora e estratégias de vendas de alto desempenho.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4 mt-auto">
               <a href="#" aria-label="Twitter" className="text-gray-400 hover:text-primary-400 transition-colors">
@@ -46,26 +47,26 @@ export default function Footer() {
           
           {/* Column 2: Núcleos Links */}
           <div className="h-full flex flex-col">
-            <h3 className="text-white font-medium mb-4">Nossos Núcleos</h3>
+            <h3 className="text-white font-medium mb-4">{t('footer.cores')}</h3>
             <ul className="space-y-2">
               <li>
                 <a href="#tech-nucleus" className="text-gray-400 hover:text-primary-400 transition-colors">
-                  1% World Tecnologia
+                  {t('footer.techCore')}
                 </a>
               </li>
               <li>
                 <a href="#sales-nucleus" className="text-gray-400 hover:text-primary-400 transition-colors">
-                  1% World Vendas
+                  {t('footer.salesCore')}
                 </a>
               </li>
               <li>
                 <a href="#sobre" className="text-gray-400 hover:text-primary-400 transition-colors">
-                  Sobre o Ecossistema
+                  {t('footer.aboutEcosystem')}
                 </a>
               </li>
               <li>
                 <a href="#faq" className="text-gray-400 hover:text-primary-400 transition-colors">
-                  Perguntas Frequentes
+                  {t('footer.faq')}
                 </a>
               </li>
             </ul>
@@ -73,14 +74,14 @@ export default function Footer() {
           
           {/* Column 3: Selos de Qualidade */}
           <div className="h-full flex flex-col">
-            <h3 className="text-white font-medium mb-4">Certificações</h3>
+            <h3 className="text-white font-medium mb-4">{t('footer.certifications')}</h3>
             <div className="flex flex-row space-x-3 items-center">
               <Image 
                 src="/assets/selo-prime.png" 
                 alt="Selo Prime" 
                 width={120} 
-                height={50} 
-                className="object-contain"
+                height={120} 
+                className="object-contain h-auto"
                 priority
               />
               
@@ -88,8 +89,8 @@ export default function Footer() {
                 src="/assets/selo-verificada-fundo-claro.png" 
                 alt="Selo Verificada" 
                 width={120} 
-                height={50} 
-                className="object-contain"
+                height={120} 
+                className="object-contain h-auto"
                 priority
               />
             </div>
@@ -98,11 +99,11 @@ export default function Footer() {
         
         {/* Bottom copyright */}
         <div className="pt-6 border-t border-dark-700 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-xs text-gray-500 mb-4 md:mb-0">&copy; {new Date().getFullYear()} Umporcento. Todos os direitos reservados.</p>
+          <p className="text-xs text-gray-500 mb-4 md:mb-0">&copy; {new Date().getFullYear()} Umporcento. {t('footer.copyright')}</p>
           <div className="flex space-x-6">
-            <a href="#" className="text-xs text-gray-400 hover:text-primary-400 transition-colors">Termos</a>
-            <a href="#" className="text-xs text-gray-400 hover:text-primary-400 transition-colors">Privacidade</a>
-            <a href="#" className="text-xs text-gray-400 hover:text-primary-400 transition-colors">Suporte</a>
+            <a href="#" className="text-xs text-gray-400 hover:text-primary-400 transition-colors">{t('footer.terms')}</a>
+            <a href="#" className="text-xs text-gray-400 hover:text-primary-400 transition-colors">{t('footer.privacy')}</a>
+            <a href="#" className="text-xs text-gray-400 hover:text-primary-400 transition-colors">{t('footer.support')}</a>
           </div>
         </div>
       </div>

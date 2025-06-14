@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { supabase, signInWithGoogle } from '@/lib/supabaseClient';
 import { Button, Input, Checkbox, EmailIcon, LockIcon, UserIcon, AlertIcon, PlusIcon, GoogleButton } from '@/components/ui';
+import { useTranslations } from 'next-intl';
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
@@ -14,13 +15,14 @@ export default function RegisterPage() {
   const [error, setError] = useState('');
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const router = useRouter();
+  const t = useTranslations('auth.register');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError(t('errors.passwordsNotMatch'));
       return;
     }
 
@@ -39,7 +41,7 @@ export default function RegisterPage() {
 
       router.push('/dashboard');
     } catch (error) {
-      setError('Error creating account');
+      setError(t('errors.accountCreation'));
     }
   };
   
@@ -51,7 +53,7 @@ export default function RegisterPage() {
       // O redirecionamento será tratado pelo OAuth e pela página de callback
     } catch (error) {
       console.error('Google sign in error:', error);
-      setError('Erro ao conectar com Google');
+      setError(t('errors.googleError'));
       setIsGoogleLoading(false);
     }
   };
@@ -66,10 +68,10 @@ export default function RegisterPage() {
               </svg>
             </div>
             <h2 className="text-3xl font-extrabold text-white font-gotham-black">
-              Crie sua conta
+              {t('pageTitle')}
             </h2>
             <p className="mt-3 text-base text-gray-400 max-w-sm mx-auto">
-              Comece a vender seus produtos digitais hoje mesmo
+              {t('pageDescription')}
             </p>
           </div>
           
@@ -88,7 +90,7 @@ export default function RegisterPage() {
                 <GoogleButton 
                   onClick={handleGoogleSignIn} 
                   isLoading={isGoogleLoading} 
-                  text="Registrar com Google" 
+                  text={t('googleButton')} 
                 />
               </div>
               
@@ -97,7 +99,7 @@ export default function RegisterPage() {
                   <div className="w-full border-t border-dark-600"></div>
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-dark-700/50 text-gray-400">ou continue com email</span>
+                  <span className="px-2 bg-dark-700/50 text-gray-400">{t('orContinueWithEmail')}</span>
                 </div>
               </div>
               
@@ -105,7 +107,7 @@ export default function RegisterPage() {
                 <div className="space-y-5">
                   <div className="relative w-full">
                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-                      Nome Completo
+                      {t('nameLabel')}
                     </label>
                     <div className="relative rounded-md shadow-sm">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -118,7 +120,7 @@ export default function RegisterPage() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="block w-full pl-10 pr-3 py-3 border border-dark-600 rounded-lg bg-dark-800/80 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 text-sm"
-                        placeholder="Seu nome completo"
+                        placeholder={t('namePlaceholder')}
                         required
                       />
                     </div>
@@ -126,7 +128,7 @@ export default function RegisterPage() {
                   
                   <div className="relative w-full">
                     <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                      Email
+                      {t('emailLabel')}
                     </label>
                     <div className="relative rounded-md shadow-sm">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -139,7 +141,7 @@ export default function RegisterPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="block w-full pl-10 pr-3 py-3 border border-dark-600 rounded-lg bg-dark-800/80 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 text-sm"
-                        placeholder="seu@email.com"
+                        placeholder={t('emailPlaceholder')}
                         required
                       />
                     </div>
@@ -147,7 +149,7 @@ export default function RegisterPage() {
                   
                   <div className="relative w-full">
                     <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-1">
-                      Senha
+                      {t('passwordLabel')}
                     </label>
                     <div className="relative rounded-md shadow-sm">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -160,7 +162,7 @@ export default function RegisterPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className="block w-full pl-10 pr-3 py-3 border border-dark-600 rounded-lg bg-dark-800/80 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 text-sm"
-                        placeholder="Sua senha"
+                        placeholder={t('passwordPlaceholder')}
                         required
                       />
                     </div>
@@ -168,7 +170,7 @@ export default function RegisterPage() {
                   
                   <div className="relative w-full">
                     <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-300 mb-1">
-                      Confirmar Senha
+                      {t('confirmPasswordLabel')}
                     </label>
                     <div className="relative rounded-md shadow-sm">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -181,7 +183,7 @@ export default function RegisterPage() {
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         className={`block w-full pl-10 pr-3 py-3 border ${error && error.includes('Passwords') ? 'border-red-500' : 'border-dark-600'} rounded-lg bg-dark-800/80 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 text-sm`}
-                        placeholder="Confirme sua senha"
+                        placeholder={t('confirmPasswordPlaceholder')}
                         required
                       />
                     </div>
@@ -208,13 +210,13 @@ export default function RegisterPage() {
                   </div>
                   <div className="ml-3">
                     <label htmlFor="terms" className="text-sm text-gray-400">
-                      Eu concordo com os{' '}
+                      {t('termsText')}{' '}
                       <Link href="/terms" className="text-primary-400 hover:text-primary-300 transition-colors">
-                        Termos de Serviço
+                        {t('termsLink')}
                       </Link>{' '}
-                      e{' '}
+                      {t('andText')}{' '}
                       <Link href="/privacy" className="text-primary-400 hover:text-primary-300 transition-colors">
-                        Política de Privacidade
+                        {t('privacyLink')}
                       </Link>
                     </label>
                   </div>
@@ -228,16 +230,16 @@ export default function RegisterPage() {
                     <span className="mr-2">
                       <PlusIcon className="h-5 w-5 text-primary-300" />
                     </span>
-                    Criar Conta
+                    {t('createAccountButton')}
                   </button>
                 </div>
               </form>
               
               <div className="text-center mt-6">
                 <p className="text-sm text-gray-400">
-                  Já tem uma conta?{' '}
+                  {t('haveAccount')}{' '}
                   <Link href="/auth/login" className="font-medium text-primary-400 hover:text-primary-300 transition-colors">
-                    Faça login
+                    {t('loginLink')}
                   </Link>
                 </p>
               </div>

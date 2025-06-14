@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
+import { useTranslations } from 'next-intl';
 
 // Função para criar um card padronizado
 const SlideCard = ({ label, value }: { label: string; value: string }) => (
@@ -13,6 +14,7 @@ const SlideCard = ({ label, value }: { label: string; value: string }) => (
 );
 
 export default function HowItWorksSection() {
+  const t = useTranslations();
   const [activeTab, setActiveTab] = useState<'empresas' | 'vendedores'>('empresas');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -55,143 +57,74 @@ export default function HowItWorksSection() {
     )
   });
 
-  // Definição manual dos slides para garantir consistência total
-  const empresasSlides = [
-    {
-      title: "Insira detalhes sobre seu produto em nossa plataforma",
-      content: (
-        <div className="w-full flex flex-col space-y-4" style={{ width: '100%', minWidth: '100%' }}>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
-            <div className="text-lg font-medium text-white">Título do produto</div>
-            <div className="text-primary-400 font-medium">AgentAI - Seu SDR com IA</div>
-          </div>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
-            <div className="text-lg font-medium text-white">Preço</div>
-            <div className="text-primary-400 font-medium">U$ 19.90/mês</div>
-          </div>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
-            <div className="text-lg font-medium text-white">Comissão</div>
-            <div className="text-primary-400 font-medium">50%</div>
-          </div>
-        </div>
-      )
-    },
-    {
-      title: "Apresente seu produto para nossos vendedores globais",
-      content: (
-        <div className="w-full flex flex-col space-y-4" style={{ width: '100%', minWidth: '100%' }}>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
-            <div className="text-lg font-medium text-white">Pitch de apresentação</div>
-            <div className="text-primary-400 font-medium">Vídeo que te torna único</div>
-          </div>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
-            <div className="text-lg font-medium text-white">Arquivos de compartilhamento</div>
-            <div className="text-primary-400 font-medium">Criativos validados</div>
-          </div>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
-            <div className="text-lg font-medium text-white">Dados de compartilhamento</div>
-            <div className="text-primary-400 font-medium">Métricas já analisadas</div>
-          </div>
-        </div>
-      )
-    },
-    {
-      title: "Integração com seu financeiro",
-      content: (
-        <div className="w-full flex flex-col space-y-4" style={{ width: '100%', minWidth: '100%' }}>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
-            <div className="text-lg font-medium text-white">Integração com Gateway</div>
-            <div className="text-primary-400 font-medium">Utilize a sua ou a nossa plataforma</div>
-          </div>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
-            <div className="text-lg font-medium text-white">Projeção de monetização</div>
-            <div className="text-primary-400 font-medium">Aumente faturamento e MRR</div>
-          </div>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
-            <div className="text-lg font-medium text-white">Gamifique seus ganhos</div>
-            <div className="text-primary-400 font-medium">Conexão única com top vendedores</div>
-          </div>
-        </div>
-      )
-    }
-  ];
+  // Obter os slides das traduções
+  const getCompaniesSlides = () => {
+    const slides = t.raw('howItWorks.companies.slides') as Array<{
+      title: string;
+      items: Array<{ label: string; value: string }>;
+    }>;
 
-  const vendedoresSlides = [
-    {
-      title: "Descubra produtos de tecnologia e recorrência",
+    return slides.map(slide => ({
+      title: slide.title,
       content: (
-        <div className="flex flex-col space-y-4">
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
-            <div className="text-lg font-medium text-white">Recorrência</div>
-            <div className="text-primary-400 font-medium">Construa renda sólida e previsível</div>
-          </div>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
-            <div className="text-lg font-medium text-white">Globalização</div>
-            <div className="text-primary-400 font-medium">Venda para qualquer lugar do mundo</div>
-          </div>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
-            <div className="text-lg font-medium text-white">Estrutura</div>
-            <div className="text-primary-400 font-medium">Monte sua própria estrutura digital</div>
-          </div>
+        <div className="w-full flex flex-col space-y-4" style={{ width: '100%', minWidth: '100%' }}>
+          {slide.items.map((item, idx) => (
+            <div key={idx} className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center w-full" style={{ height: '60px' }}>
+              <div className="text-lg font-medium text-white">{item.label}</div>
+              <div className="text-primary-400 font-medium">{item.value}</div>
+            </div>
+          ))}
         </div>
       )
-    },
-    {
-      title: "Crie seu próprio império e seja criador de produtos",
-      content: (
-        <div className="flex flex-col space-y-4">
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
-            <div className="text-lg font-medium text-white">Transformação</div>
-            <div className="text-primary-400 font-medium">Tenha seu próprio projeto além de vender outros já validados</div>
-          </div>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
-            <div className="text-lg font-medium text-white">Mentoria</div>
-            <div className="text-primary-400 font-medium">Suporte completo desde estratégias até monetização</div>
-          </div>
-          <div className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
-            <div className="text-lg font-medium text-white">Produtos diversos</div>
-            <div className="text-primary-400 font-medium">Micro-SaaS, SaaS, Agentes de IA, escolhe o que mais se identifica</div>
-          </div>
-        </div>
-      )
-    },
-    {
-      title: "Comunidade única e exclusiva focada em resultados e crescimento conjunto",
-      content: (
+    }));
+  };
+
+  const getSellersSlides = () => {
+    const slides = t.raw('howItWorks.sellers.slides') as Array<{
+      title: string;
+      items?: Array<{ label: string; value: string }>;
+      stats?: Array<{ value: string; label: string }>;
+    }>;
+
+    return slides.map((slide, slideIndex) => ({
+      title: slide.title,
+      content: slideIndex === 2 ? (
+        // Terceiro slide com estatísticas
         <div className="bg-gradient-to-br from-dark-800 to-dark-900 p-8 rounded-xl border border-dark-600 shadow-xl">
           <div className="grid grid-cols-3 gap-8 text-center mb-10">
-            <div>
-              <div className="text-4xl font-gotham-black text-primary-400 mb-2">1000+</div>
-              <div className="text-gray-300">Membros Ativos</div>
-            </div>
-            <div>
-              <div className="text-4xl font-gotham-black text-primary-400 mb-2">24/7</div>
-              <div className="text-gray-300">Suporte Dedicado</div>
-            </div>
-            <div>
-              <div className="text-4xl font-gotham-black text-primary-400 mb-2">50+</div>
-              <div className="text-gray-300">Países</div>
-            </div>
+            {slide.stats?.slice(0, 3).map((stat, idx) => (
+              <div key={idx}>
+                <div className="text-4xl font-gotham-black text-primary-400 mb-2">{stat.value}</div>
+                <div className="text-gray-300">{stat.label}</div>
+              </div>
+            ))}
           </div>
           
           <div className="grid grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-gotham-black text-primary-400 mb-2">100+</div>
-              <div className="text-gray-300">Mentorias Realizadas</div>
-            </div>
-            <div>
-              <div className="text-4xl font-gotham-black text-primary-400 mb-2">R$1M+</div>
-              <div className="text-gray-300">GMV Mensal</div>
-            </div>
-            <div>
-              <div className="text-4xl font-gotham-black text-primary-400 mb-2">10+</div>
-              <div className="text-gray-300">Eventos Anuais</div>
-            </div>
+            {slide.stats?.slice(3, 6).map((stat, idx) => (
+              <div key={idx}>
+                <div className="text-4xl font-gotham-black text-primary-400 mb-2">{stat.value}</div>
+                <div className="text-gray-300">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
+      ) : (
+        // Slides normais com itens
+        <div className="flex flex-col space-y-4">
+          {slide.items?.map((item, idx) => (
+            <div key={idx} className="bg-dark-700/50 p-5 rounded-lg flex justify-between items-center">
+              <div className="text-lg font-medium text-white">{item.label}</div>
+              <div className="text-primary-400 font-medium">{item.value}</div>
+            </div>
+          ))}
+        </div>
       )
-    }
-  ];
+    }));
+  };
+
+  const empresasSlides = getCompaniesSlides();
+  const vendedoresSlides = getSellersSlides();
 
   const currentSlides = activeTab === 'empresas' ? empresasSlides : vendedoresSlides;
 
@@ -199,10 +132,9 @@ export default function HowItWorksSection() {
     <section className="py-24 bg-dark-700">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-gotham-black text-white mb-4">Como Funciona</h2>
+          <h2 className="text-3xl md:text-4xl font-gotham-black text-white mb-4">{t('howItWorks.title')}</h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Nossa plataforma foi desenvolvida para conectar empresas e vendedores globais 
-            de forma eficiente e lucrativa para ambos os lados.
+            {t('howItWorks.subtitle')}
           </p>
         </div>
         
@@ -217,7 +149,7 @@ export default function HowItWorksSection() {
                   : 'text-gray-300 hover:text-white'
               }`}
             >
-              Para empresas
+              {t('howItWorks.forCompanies')}
             </button>
             <button
               onClick={() => setActiveTab('vendedores')}
@@ -227,7 +159,7 @@ export default function HowItWorksSection() {
                   : 'text-gray-300 hover:text-white'
               }`}
             >
-              Para vendedores globais
+              {t('howItWorks.forSellers')}
             </button>
           </div>
         </div>

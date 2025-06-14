@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import { Button } from '@/components/ui/Button';
+import { useTranslations } from 'next-intl';
 
 // Importar tipos e componentes
 import { FormData, UserProfileType } from './types';
@@ -77,6 +78,7 @@ export default function UserFormPage() {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<any>(null);
   const router = useRouter();
+  const t = useTranslations('userform');
   
   // Estado para dados do formulário
   const [formData, setFormData] = useState<FormData>({
@@ -512,8 +514,8 @@ export default function UserFormPage() {
     <div className="min-h-screen bg-dark-800 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-white">Complete seu perfil</h1>
-          <p className="mt-2 text-gray-400">Precisamos de algumas informações para personalizar sua experiência</p>
+          <h1 className="text-3xl font-bold text-white">{t('title')}</h1>
+          <p className="mt-2 text-gray-400">{t('description')}</p>
         </div>
         
         <div className="mb-8">
@@ -531,7 +533,7 @@ export default function UserFormPage() {
               variant="outline"
               disabled={loading}
             >
-              Voltar
+              {t('navigation.back')}
             </Button>
           ) : (
             <div></div>
@@ -541,17 +543,17 @@ export default function UserFormPage() {
             <Button
               onClick={nextStep}
               disabled={!canProceed() || loading}
-              loading={loading}
+              isLoading={loading}
             >
-              Próximo
+              {t('navigation.next')}
             </Button>
           ) : (
             <Button
               onClick={saveUserProfile}
               disabled={!canProceed() || loading}
-              loading={loading}
+              isLoading={loading}
             >
-              {loading ? 'Salvando...' : 'Finalizar'}
+              {loading ? t('navigation.saving') : t('navigation.finish')}
             </Button>
           )}
         </div>

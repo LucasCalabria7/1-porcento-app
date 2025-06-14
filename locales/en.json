@@ -1,0 +1,465 @@
+{
+  "common": {
+    "login": "Login",
+    "register": "Sign up",
+    "language": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "cores": "Cores",
+    "testimonials": "Testimonials",
+    "faq": "FAQ"
+  },
+  "landing": {
+    "title": "Transforming lives through financial education",
+    "subtitle": "Learn to invest and build your wealth with the Um Porcento community"
+  },
+  "hero": {
+    "forCompanies": "For Companies",
+    "scaleYourSales": "Scale your sales with our affiliate army",
+    "globalSellersNetwork": "Access to a global network of qualified sellers",
+    "completePlatform": "Complete platform to manage your digital products",
+    "noAdsNeeded": "No need to invest in ads",
+    "trainedSellers": "+1,000 highly trained sellers for your product",
+    "forGlobalSellers": "For Global Sellers",
+    "sellBestProducts": "Sell the best products with global recurrence",
+    "accessToBestProducts": "Access to the best digital products in the market",
+    "attractiveCommissions": "Attractive commissions and recurring payments",
+    "trainingAndSupport": "Training and support to maximize your results",
+    "globalRecurrence": "Global recurring products, monetize in any currency in the world",
+    "knowTechCore": "Learn about our technology core",
+    "knowSalesCore": "Learn about our sales core"
+  },
+  "about": {
+    "forCompanies": "For Companies",
+    "transformProduct": "Transform your digital product into a sales success",
+    "companyDescription": "1% World connects your company to a global network of qualified sellers, ready to scale your sales with proven strategies and cutting-edge technology.",
+    "forGlobalSellers": "For Global Sellers",
+    "monetizeKnowledge": "Monetize your knowledge and reach by selling the best products",
+    "sellersDescription": "Join the elite community of 1% World sellers and get access to the best digital products, exclusive training, and attractive commissions.",
+    "ecosystem": "The 1% World Ecosystem",
+    "ecosystemDescription": "1% World is more than a platform, it's a complete ecosystem that combines technology and sales strategies to create an environment where companies and global sellers thrive together. Our mission is to transform the digital products market, offering innovative solutions that generate extraordinary results for everyone involved.",
+    "innovation": "Innovation",
+    "community": "Community",
+    "results": "Results"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to the most common questions about 1% World.",
+    "questions": [
+      {
+        "question": "What is 1% World?",
+        "answer": "1% World is a complete ecosystem that connects companies and global sellers, offering cutting-edge technology and sales strategies to maximize results in the digital products market."
+      },
+      {
+        "question": "How does it work for companies?",
+        "answer": "Companies can register their digital products on the platform, set up affiliate programs, and have access to a global network of qualified sellers, as well as tools and strategies to scale their business."
+      },
+      {
+        "question": "How does it work for sellers?",
+        "answer": "Sellers can register as affiliates, choose quality products to promote, receive exclusive training, and earn attractive commissions for each sale made."
+      },
+      {
+        "question": "What are the cores of 1% World?",
+        "answer": "1% World has two main cores: the Technology Core, focused on innovation and technological solutions, and the Sales Core, specialized in strategies and mentoring to maximize results."
+      },
+      {
+        "question": "How do I join the community?",
+        "answer": "You can register on the platform as a company or seller, and also participate in the WhatsApp groups specific to each core, where we share exclusive content and opportunities."
+      },
+      {
+        "question": "What types of products can I sell or register?",
+        "answer": "The platform focuses on digital products such as courses, e-books, mentoring, software, subscriptions, and other content that can be delivered digitally."
+      }
+    ]
+  },
+  "footer": {
+    "description": "Transforming the digital products market with innovative technology and high-performance sales strategies.",
+    "cores": "Our Cores",
+    "techCore": "1% World Technology",
+    "salesCore": "1% World Sales",
+    "aboutEcosystem": "About the Ecosystem",
+    "faq": "Frequently Asked Questions",
+    "certifications": "Certifications",
+    "copyright": "All rights reserved.",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "support": "Support"
+  },
+  "testimonials": {
+    "title": "Success Stories",
+    "subtitle": "Meet some of the people who transformed their businesses and careers through the 1% World ecosystem.",
+    "items": [
+      {
+        "quote": "The 1% World platform completely transformed my digital business. I managed to increase my sales by more than 300% in just 3 months.",
+        "name": "Carlos Silva",
+        "role": "Digital Entrepreneur"
+      },
+      {
+        "quote": "As an affiliate, I've never had so much support and quality tools. The community is amazing and the training is top-notch.",
+        "name": "Ana Oliveira",
+        "role": "Premium Affiliate"
+      },
+      {
+        "quote": "My digital product was stagnant until I found 1% World. The affiliate strategy changed everything and now I have recurring sales.",
+        "name": "Marcos Santos",
+        "role": "Content Creator"
+      },
+      {
+        "quote": "The personalized mentoring was fundamental for my growth. I learned strategies I never imagined and the results are impressive.",
+        "name": "Juliana Costa",
+        "role": "Digital Entrepreneur"
+      }
+    ]
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Our platform was developed to connect companies and global sellers efficiently and profitably for both sides.",
+    "forCompanies": "For companies",
+    "forSellers": "For global sellers",
+    "companies": {
+      "slides": [
+        {
+          "title": "Enter details about your product on our platform",
+          "items": [
+            { "label": "Product title", "value": "AgentAI - Your AI SDR" },
+            { "label": "Price", "value": "U$ 19.90/month" },
+            { "label": "Commission", "value": "50%" }
+          ]
+        },
+        {
+          "title": "Present your product to our global sellers",
+          "items": [
+            { "label": "Presentation pitch", "value": "Video that makes you unique" },
+            { "label": "Sharing files", "value": "Validated creatives" },
+            { "label": "Sharing data", "value": "Pre-analyzed metrics" }
+          ]
+        },
+        {
+          "title": "Integration with your financial system",
+          "items": [
+            { "label": "Gateway integration", "value": "Use your platform or ours" },
+            { "label": "Monetization projection", "value": "Increase revenue and MRR" },
+            { "label": "Gamify your earnings", "value": "Unique connection with top sellers" }
+          ]
+        }
+      ]
+    },
+    "sellers": {
+      "slides": [
+        {
+          "title": "Discover technology and recurring products",
+          "items": [
+            { "label": "Recurrence", "value": "Build solid and predictable income" },
+            { "label": "Globalization", "value": "Sell to anywhere in the world" },
+            { "label": "Structure", "value": "Build your own digital structure" }
+          ]
+        },
+        {
+          "title": "Create your own empire and become a product creator",
+          "items": [
+            { "label": "Transformation", "value": "Have your own project besides selling other validated ones" },
+            { "label": "Mentoring", "value": "Complete support from strategies to monetization" },
+            { "label": "Various products", "value": "Micro-SaaS, SaaS, AI Agents, choose what you identify with most" }
+          ]
+        },
+        {
+          "title": "Unique and exclusive community focused on results and joint growth",
+          "stats": [
+            { "value": "1000+", "label": "Active Members" },
+            { "value": "24/7", "label": "Dedicated Support" },
+            { "value": "50+", "label": "Countries" },
+            { "value": "100+", "label": "Mentorships Conducted" },
+            { "value": "R$1M+", "label": "Monthly GMV" },
+            { "value": "10+", "label": "Annual Events" }
+          ]
+        }
+      ]
+    }
+  },
+  "ctaSection": {
+    "badge": "Transform your business today",
+    "title": "Ready to be part of the 1% that transforms the world?",
+    "subtitle": "Join our ecosystem and get access to innovative technologies, proven strategies, and a high-performance community.",
+    "chooseParticipation": "Choose how you want to participate",
+    "technologyGroup": {
+      "joinThe": "Join the",
+      "groupName": "Technology Group"
+    },
+    "salesGroup": {
+      "joinThe": "Join the",
+      "groupName": "Sales Group"
+    },
+    "support": {
+      "badge": "Support",
+      "title": "Any questions?",
+      "technologySpecialist": "Technology Specialist",
+      "salesSpecialist": "Sales Specialist"
+    }
+  },
+  "nucleusSection": {
+    "title": "1% World Cores",
+    "salesCard": {
+      "title": "1% World Sales",
+      "description": "Our sales core brings together the best professionals in the market to help companies scale their results and sellers maximize their earnings.",
+      "features": [
+        {
+          "title": "Strategies",
+          "description": "Proven methodologies to increase conversions and maximize sales results."
+        },
+        {
+          "title": "Mentoring",
+          "description": "Personalized guidance to develop your sales skills."
+        }
+      ],
+      "whatsappButton": "WhatsApp Group",
+      "accessButton": "Access Core"
+    },
+    "techCard": {
+      "title": "1% World Technology",
+      "description": "Our technology core develops innovative solutions to boost the growth of companies and sellers in the digital world for digital business owners.",
+      "features": [
+        {
+          "title": "Innovation",
+          "description": "Cutting-edge technologies to optimize processes and maximize results, create unique solutions in digital."
+        },
+        {
+          "title": "Community",
+          "description": "Network of professionals and resources to accelerate your growth, connect with the top 1% who dominate the digital market."
+        }
+      ],
+      "whatsappButton": "WhatsApp Group",
+      "accessButton": "Access Core"
+    }
+  },
+  "auth": {
+    "login": {
+      "pageTitle": "Sign in to your account",
+      "pageDescription": "Access your account to manage your digital products",
+      "googleButton": "Sign in with Google",
+      "orContinueWithEmail": "or continue with email",
+      "emailLabel": "Email",
+      "emailPlaceholder": "your@email.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "••••••••",
+      "rememberMe": "Keep me signed in",
+      "forgotPassword": "Forgot your password?",
+      "loginButton": "Sign in",
+      "loggingIn": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "registerNow": "Register now",
+      "errors": {
+        "authFailed": "Google authentication failed. Please try again.",
+        "authError": "An error occurred during authentication. Please try again.",
+        "googleError": "Error connecting with Google"
+      }
+    },
+    "register": {
+      "pageTitle": "Create your account",
+      "pageDescription": "Start selling your digital products today",
+      "googleButton": "Register with Google",
+      "orContinueWithEmail": "or continue with email",
+      "nameLabel": "Full Name",
+      "namePlaceholder": "Your full name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "your@email.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Your password",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "termsText": "I agree to the",
+      "termsLink": "Terms of Service",
+      "andText": "and",
+      "privacyLink": "Privacy Policy",
+      "createAccountButton": "Create Account",
+      "haveAccount": "Already have an account?",
+      "loginLink": "Sign in",
+      "errors": {
+        "passwordsNotMatch": "Passwords do not match",
+        "accountCreation": "Error creating account",
+        "googleError": "Error connecting with Google"
+      }
+    }
+  },
+  "profileCompletionModal": {
+    "title": "Hello, {name}! Complete your profile",
+    "description": "To access the full dashboard, we need some additional information about you. Complete your profile to unlock all platform features.",
+    "benefitsTitle": "Benefits of completing your profile:",
+    "benefits": {
+      "access": "Access to all platform features",
+      "experience": "Personalized experience based on your profile",
+      "insights": "Recommendations and insights relevant to your goals"
+    },
+    "completeButton": "Complete profile",
+    "redirectingText": "Redirecting...",
+    "progressText": "Your profile is {progress}% complete"
+  },
+  "userform": {
+    "loading": "Loading...",
+    "title": "Complete your profile",
+    "description": "We need some information to personalize your experience",
+    "pageTitle": "Complete your profile",
+    "pageDescription": "We need some information to personalize your experience",
+    "navigation": {
+      "back": "Back",
+      "next": "Next",
+      "finish": "Finish",
+      "saving": "Saving..."
+    },
+    "steps": {
+      "profileType": {
+        "title": "Which profile best defines you?",
+        "options": {
+          "ceo": {
+            "title": "CEO",
+            "description": "You own or lead a company or digital product"
+          },
+          "associate": {
+            "title": "Associate",
+            "description": "You work at a company or are part of a team"
+          },
+          "creator": {
+            "title": "UGC Creator",
+            "description": "You create content and are a digital influencer"
+          }
+        }
+      },
+      "basicInfo": {
+        "title": "Basic Information",
+        "subtitle": "Fill in your personal details",
+        "fullName": {
+          "label": "Full name",
+          "placeholder": "Enter your full name"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email"
+        },
+        "phoneNumber": {
+          "label": "Phone",
+          "placeholder": "Enter your phone number"
+        },
+        "country": {
+          "label": "Country",
+          "placeholder": "Select your country"
+        },
+        "birthDate": {
+          "label": "Date of birth",
+          "placeholder": "MM/DD/YYYY"
+        },
+        "document": {
+          "label": "ID Number",
+          "placeholder": "Enter your ID number"
+        },
+        "address": {
+          "label": "Address",
+          "placeholder": "Enter your full address"
+        },
+        "language": {
+          "label": "Preferred language",
+          "placeholder": "Select your language"
+        }
+      },
+      "ceoSpecific": {
+        "title": "Company Information",
+        "subtitle": "Tell us about your business",
+        "companyRevenue": {
+          "label": "Annual company revenue",
+          "placeholder": "Select revenue range"
+        }
+      },
+      "associateSpecific": {
+        "title": "Professional Experience",
+        "subtitle": "Tell us about your experience",
+        "globalSellingExperience": {
+          "label": "Global selling experience",
+          "placeholder": "Select your experience"
+        }
+      },
+      "creatorSpecific": {
+        "title": "Creator Experience",
+        "subtitle": "Tell us about your experience as a creator",
+        "creatorExperienceLevel": {
+          "label": "Creator experience level",
+          "placeholder": "Select your experience level"
+        }
+      },
+      "monetization": {
+        "title": "Monetization Strategy",
+        "subtitle": "How you plan to monetize your business",
+        "monetizationMethod": {
+          "label": "Main monetization method",
+          "placeholder": "Select main method"
+        },
+        "globalMonetization": {
+          "label": "Global monetization",
+          "placeholder": "Select your global strategy"
+        },
+        "digitalProductStrategy": {
+          "label": "Do you plan to sell digital products?"
+        },
+        "digitalProductType": {
+          "label": "What types of digital products do you plan to sell?",
+          "selectAtLeastOne": "Select at least one option"
+        },
+        "referralSource": {
+          "label": "How did you hear about our platform?",
+          "placeholder": "Select an option"
+        }
+      },
+      "review": {
+        "title": "Information Review",
+        "subtitle": "Verify that all information is correct",
+        "profileType": "Profile Type",
+        "personalInfo": "Personal Information",
+        "fullName": "Full Name",
+        "email": "Email",
+        "phoneNumber": "Phone",
+        "country": "Country",
+        "birthDate": "Date of Birth",
+        "document": "ID Number",
+        "address": "Address",
+        "language": "Preferred Language",
+        "businessInfo": "Business Information",
+        "companyRevenue": "Company Revenue",
+        "globalSellingExperience": "Global Selling Experience",
+        "creatorExperienceLevel": "Creator Experience Level",
+        "monetizationStrategy": "Monetization Strategy",
+        "monetizationMethod": "Monetization Method",
+        "globalMonetization": "Global Monetization",
+        "digitalProductStrategy": "Digital Product Sales",
+        "digitalProductTypes": "Digital Product Types",
+        "referralSource": "How You Found Us",
+        "yes": "Yes",
+        "no": "No"
+      }
+    },
+    "validations": {
+      "requiredFields": "Please fill in all required fields: {fields}",
+      "companyRevenue": "Please provide your company's revenue range.",
+      "globalSellingExperience": "Please provide your global selling experience.",
+      "creatorExperienceLevel": "Please provide your creator experience level.",
+      "digitalProductType": "Please select at least one type of digital product you plan to sell.",
+      "updateError": "Error updating profile: {message}",
+      "createError": "Error creating profile: {message}",
+      "genericError": "An error occurred while saving your profile: {message}"
+    }
+  },
+  "validations": {
+    "required": "This field is required",
+    "email": "Please enter a valid email address",
+    "minLength": "This field must be at least {min} characters",
+    "maxLength": "This field must be at most {max} characters",
+    "passwordMatch": "Passwords do not match",
+    "phoneNumber": "Please enter a valid phone number",
+    "date": "Please enter a valid date",
+    "url": "Please enter a valid URL",
+    "number": "Please enter a valid number",
+    "integer": "Please enter a valid integer",
+    "positive": "Please enter a positive number",
+    "negative": "Please enter a negative number",
+    "min": "Please enter a value greater than or equal to {min}",
+    "max": "Please enter a value less than or equal to {max}"
+  }
+}

@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
+import { useTranslations } from 'next-intl';
 
 export default function HeroSection() {
+  const t = useTranslations();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   
@@ -40,7 +42,7 @@ export default function HeroSection() {
     <section id="inicio" className="relative min-h-screen pt-20 flex items-center bg-dark-800">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-700 opacity-90"></div>
-        <div className="absolute inset-0 bg-[url('/assets/hero-pattern.png')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/10 to-primary-800/10 bg-cover bg-center opacity-10"></div>
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full">
@@ -49,9 +51,9 @@ export default function HeroSection() {
           <div className="keen-slider__slide">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 mb-10 md:mb-0">
-                <h3 className="text-primary-400 font-medium mb-3 text-lg">Para Empresas</h3>
+                <h3 className="text-primary-400 font-medium mb-3 text-lg">{t('hero.forCompanies')}</h3>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-gotham-black text-white leading-tight mb-6">
-                  Escale suas vendas com nosso exército de afiliados
+                  {t('hero.scaleYourSales')}
                 </h1>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
@@ -60,7 +62,7 @@ export default function HeroSection() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-300">Acesso a uma rede global de vendedores qualificados</span>
+                    <span className="text-gray-300">{t('hero.globalSellersNetwork')}</span>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 bg-primary-500/20 p-1 rounded-full">
@@ -68,7 +70,7 @@ export default function HeroSection() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-300">Plataforma completa para gerenciar seus produtos digitais</span>
+                    <span className="text-gray-300">{t('hero.completePlatform')}</span>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 bg-primary-500/20 p-1 rounded-full">
@@ -76,7 +78,7 @@ export default function HeroSection() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-300">Sem precisar de investir em anúncios</span>
+                    <span className="text-gray-300">{t('hero.noAdsNeeded')}</span>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 bg-primary-500/20 p-1 rounded-full">
@@ -84,7 +86,7 @@ export default function HeroSection() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-300">+1.000 vendedores altamente treinados em seu produto</span>
+                    <span className="text-gray-300">{t('hero.trainedSellers')}</span>
                   </li>
                 </ul>
               </div>
@@ -116,9 +118,9 @@ export default function HeroSection() {
           <div className="keen-slider__slide">
             <div className="flex flex-col md:flex-row items-center">
               <div className="md:w-1/2 mb-10 md:mb-0">
-                <h3 className="text-primary-400 font-medium mb-3 text-lg">Para Vendedores Globais</h3>
+                <h3 className="text-primary-400 font-medium mb-3 text-lg">{t('hero.forGlobalSellers')}</h3>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-gotham-black text-white leading-tight mb-6">
-                  Venda os melhores produtos com recorrência global
+                  {t('hero.sellBestProducts')}
                 </h1>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
@@ -127,7 +129,7 @@ export default function HeroSection() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-300">Acesso aos melhores produtos digitais do mercado</span>
+                    <span className="text-gray-300">{t('hero.accessToBestProducts')}</span>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 bg-primary-500/20 p-1 rounded-full">
@@ -135,7 +137,7 @@ export default function HeroSection() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-300">Comissões atrativas e pagamentos recorrentes</span>
+                    <span className="text-gray-300">{t('hero.attractiveCommissions')}</span>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 bg-primary-500/20 p-1 rounded-full">
@@ -143,7 +145,7 @@ export default function HeroSection() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-300">Treinamento e suporte para maximizar seus resultados</span>
+                    <span className="text-gray-300">{t('hero.trainingAndSupport')}</span>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 bg-primary-500/20 p-1 rounded-full">
@@ -151,7 +153,7 @@ export default function HeroSection() {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-300">Produtos de recorrência global, monetize em qualquer moeda do mundo</span>
+                    <span className="text-gray-300">{t('hero.globalRecurrence')}</span>
                   </li>
                 </ul>
               </div>
@@ -204,13 +206,13 @@ export default function HeroSection() {
             onClick={() => scrollToSection('tech-nucleus')}
             className="px-6 py-3 rounded-lg bg-gradient-to-r from-primary-500 to-primary-700 hover:from-primary-600 hover:to-primary-800 text-white font-medium shadow-lg shadow-primary-700/30 hover:shadow-primary-700/50 transition-all duration-300"
           >
-            Conheça nosso núcleo de tecnologia
+            {t('hero.knowTechCore')}
           </button>
           <button 
             onClick={() => scrollToSection('sales-nucleus')}
             className="px-6 py-3 rounded-lg bg-dark-700 hover:bg-dark-600 text-white font-medium border border-primary-500/30 hover:border-primary-500/50 transition-colors duration-300"
           >
-            Conheça nosso núcleo de vendas
+            {t('hero.knowSalesCore')}
           </button>
         </div>
       </div>

@@ -132,9 +132,14 @@ export default function DashboardPage() {
       
       <div className="py-6">
         {/* Cabeçalho */}
-        <div className="mb-8">
-          <h1 className="title-black text-2xl font-semibold text-white">Dashboard</h1>
-          <p className="mt-2 text-sm text-gray-400">Visão geral do seu negócio de produtos digitais.</p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="title-black text-2xl font-semibold text-white">Dashboard</h1>
+            <p className="mt-2 text-sm text-gray-400">Visão geral do seu negócio de produtos digitais.</p>
+          </div>
+          <Link href="/userform" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200">
+            Editar Perfil
+          </Link>
         </div>
 
         {/* Cards de estatísticas */}

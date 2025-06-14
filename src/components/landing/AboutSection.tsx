@@ -1,10 +1,13 @@
 "use client";
 
+import React from 'react';
+import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 
 export default function AboutSection() {
+  const t = useTranslations();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   
@@ -35,28 +38,22 @@ export default function AboutSection() {
         <div ref={sliderRef} className="keen-slider mb-16 ">
           {/* Slide 1 - Para Empresas */}
           <div className="keen-slider__slide">
-            <div className="text-center max-w-3xl mx-auto">
-              <h3 className="text-primary-400 font-medium mb-3 text-lg">Para Empresas</h3>
-              <h2 className="text-3xl md:text-4xl font-gotham-black text-white mb-6">
-                Transforme seu produto digital em um sucesso de vendas
-              </h2>
-              <p className="text-gray-300 text-lg">
-                A 1% World conecta sua empresa a uma rede global de vendedores qualificados, 
-                prontos para escalar suas vendas com estratégias comprovadas e tecnologia de ponta.
+            <div className="max-w-lg">
+              <h3 className="text-primary-400 font-medium mb-3 text-lg">{t('about.forCompanies')}</h3>
+              <h2 className="text-3xl md:text-4xl font-gotham-black text-white mb-4">{t('about.transformProduct')}</h2>
+              <p className="text-gray-300 mb-6">
+                {t('about.companyDescription')}
               </p>
             </div>
           </div>
           
           {/* Slide 2 - Para Vendedores Globais */}
           <div className="keen-slider__slide">
-            <div className="text-center max-w-3xl mx-auto">
-              <h3 className="text-primary-400 font-medium mb-3 text-lg">Para Vendedores Globais</h3>
-              <h2 className="text-3xl md:text-4xl font-gotham-black text-white mb-6">
-                Monetize seu conhecimento e alcance vendendo os melhores produtos
-              </h2>
-              <p className="text-gray-300 text-lg">
-                Junte-se à comunidade de elite de vendedores da 1% World e tenha acesso aos 
-                melhores produtos digitais, treinamentos exclusivos e comissões atrativas.
+            <div className="max-w-lg">
+              <h3 className="text-primary-400 font-medium mb-3 text-lg">{t('about.forGlobalSellers')}</h3>
+              <h2 className="text-3xl md:text-4xl font-gotham-black text-white mb-4">{t('about.monetizeKnowledge')}</h2>
+              <p className="text-gray-300 mb-6">
+                {t('about.sellersDescription')}
               </p>
             </div>
           </div>
@@ -84,12 +81,9 @@ export default function AboutSection() {
         <div className="relative max-w-4xl mx-auto">
           <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-primary-900 rounded-2xl blur-lg animate-pulse opacity-75"></div>
           <div className="relative bg-dark-700 border border-dark-600 rounded-2xl p-8 shadow-xl">
-            <h3 className="text-2xl font-gotham-black text-white mb-4 text-center">O Ecossistema 1% World</h3>
-            <p className="text-gray-300 text-center leading-relaxed">
-              A 1% World é mais que uma plataforma, é um ecossistema completo que une tecnologia e estratégias 
-              de vendas para criar um ambiente onde empresas e vendedores globais prosperam juntos. 
-              Nossa missão é transformar o mercado de produtos digitais, oferecendo soluções inovadoras 
-              que geram resultados extraordinários para todos os envolvidos.
+            <h2 className="text-3xl md:text-4xl font-gotham-black text-white mb-4 text-center">{t('about.ecosystem')}</h2>
+            <p className="text-gray-300 mb-12 max-w-3xl mx-auto text-center">
+              {t('about.ecosystemDescription')}
             </p>
             <div className="mt-6 flex justify-center">
               <div className="grid grid-cols-3 gap-6">
