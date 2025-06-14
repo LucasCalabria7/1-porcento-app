@@ -297,6 +297,8 @@
   },
   "userform": {
     "loading": "Cargando...",
+    "title": "Completa tu perfil",
+    "description": "Necesitamos información para personalizar tu experiencia",
     "pageTitle": "Completa tu perfil",
     "pageDescription": "Necesitamos información para personalizar tu experiencia",
     "navigation": {

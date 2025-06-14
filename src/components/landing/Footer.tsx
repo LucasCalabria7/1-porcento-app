@@ -80,8 +80,8 @@ export default function Footer() {
                 src="/assets/selo-prime.png" 
                 alt="Selo Prime" 
                 width={120} 
-                height={50} 
-                className="object-contain"
+                height={120} 
+                className="object-contain h-auto"
                 priority
               />
               
@@ -89,8 +89,8 @@ export default function Footer() {
                 src="/assets/selo-verificada-fundo-claro.png" 
                 alt="Selo Verificada" 
                 width={120} 
-                height={50} 
-                className="object-contain"
+                height={120} 
+                className="object-contain h-auto"
                 priority
               />
             </div>

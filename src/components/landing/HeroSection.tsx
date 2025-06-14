@@ -42,7 +42,7 @@ export default function HeroSection() {
     <section id="inicio" className="relative min-h-screen pt-20 flex items-center bg-dark-800">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-800 to-dark-700 opacity-90"></div>
-        <div className="absolute inset-0 bg-[url('/assets/hero-pattern.png')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/10 to-primary-800/10 bg-cover bg-center opacity-10"></div>
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full">

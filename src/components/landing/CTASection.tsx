@@ -8,7 +8,7 @@ export default function CTASection() {
     <section className="py-16 md:py-24 relative overflow-hidden">
       {/* Background elements - Design moderno com gradientes e formas */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-dark-900 to-dark-950 z-0"></div>
-      <div className="absolute inset-0 bg-[url('/assets/pattern.png')] bg-repeat opacity-10 z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-primary-800/5 to-primary-600/5 bg-repeat opacity-10 z-0"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(99,102,241,0.2),transparent_70%)] z-0"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(79,70,229,0.15),transparent_70%)] z-0"></div>
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500/10 rounded-full filter blur-3xl -mr-48 -mt-48 z-0"></div>
@@ -59,7 +59,7 @@ export default function CTASection() {
                     rel="noopener noreferrer"
                     className="group relative px-8 py-5 rounded-xl bg-gradient-to-br from-primary-600 to-primary-700 hover:from-primary-500 hover:to-primary-600 text-white font-medium shadow-lg shadow-primary-700/30 hover:shadow-primary-500/50 transition-all duration-300 overflow-hidden"
                   >
-                    <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-10"></div>
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                     <div className="flex items-center justify-center relative z-10">
                       <div className="bg-white/20 rounded-full p-2 mr-3">
@@ -80,7 +80,7 @@ export default function CTASection() {
                     rel="noopener noreferrer"
                     className="group relative px-8 py-5 rounded-xl bg-gradient-to-br from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white font-medium shadow-lg shadow-green-700/30 hover:shadow-green-500/50 transition-all duration-300 overflow-hidden"
                   >
-                    <div className="absolute inset-0 bg-[url('/assets/noise.png')] opacity-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-10"></div>
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                     <div className="flex items-center justify-center relative z-10">
                       <div className="bg-white/20 rounded-full p-2 mr-3">
