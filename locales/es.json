@@ -295,6 +295,21 @@
     "redirectingText": "Redireccionando...",
     "progressText": "Tu perfil está {progress}% completo"
   },
+  "dashboard": {
+    "welcome": "Bienvenido",
+    "searchPlaceholder": "Buscar transacciones, productos...",
+    "notifications": "notificaciones",
+    "profileTypes": {
+      "ceo": "CEO",
+      "associate": "Associate",
+      "creator": "UGC Creator"
+    },
+    "userMenu": {
+      "profile": "Mi Perfil",
+      "settings": "Configuración",
+      "logout": "Cerrar sesión"
+    }
+  },
   "userform": {
     "loading": "Cargando...",
     "title": "Completa tu perfil",

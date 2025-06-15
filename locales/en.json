@@ -289,11 +289,26 @@
     "benefits": {
       "access": "Access to all platform features",
       "experience": "Personalized experience based on your profile",
-      "insights": "Recommendations and insights relevant to your goals"
+      "insights": "Relevant recommendations and insights for your goals"
     },
     "completeButton": "Complete profile",
     "redirectingText": "Redirecting...",
     "progressText": "Your profile is {progress}% complete"
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "searchPlaceholder": "Search transactions, products...",
+    "notifications": "notifications",
+    "profileTypes": {
+      "ceo": "CEO",
+      "associate": "Associate",
+      "creator": "UGC Creator"
+    },
+    "userMenu": {
+      "profile": "My Profile",
+      "settings": "Settings",
+      "logout": "Log out"
+    }
   },
   "userform": {
     "loading": "Loading...",
