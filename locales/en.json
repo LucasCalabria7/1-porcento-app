@@ -308,6 +308,14 @@
       "profile": "My Profile",
       "settings": "Settings",
       "logout": "Log out"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "products": "Products",
+      "sales": "Sales",
+      "customers": "Customers",
+      "analytics": "Analytics",
+      "settings": "Settings"
     }
   },
   "userform": {

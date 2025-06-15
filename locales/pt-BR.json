@@ -308,6 +308,14 @@
       "profile": "Meu Perfil",
       "settings": "Configurações",
       "logout": "Sair"
+    },
+    "sidebar": {
+      "dashboard": "Painel",
+      "products": "Produtos",
+      "sales": "Vendas",
+      "customers": "Clientes",
+      "analytics": "Análises",
+      "settings": "Configurações"
     }
   },
   "userform": {

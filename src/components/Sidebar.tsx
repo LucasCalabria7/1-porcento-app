@@ -1,15 +1,126 @@
 "use client";
 
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { User, Settings, LogOut, ChevronLeft, ChevronRight, Menu } from 'lucide-react';
+import { signOut, supabase } from '@/lib/supabaseClient';
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const t = useTranslations('dashboard');
   
+  const [username, setUsername] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const userDropdownRef = useRef<HTMLDivElement>(null);
+  
+  // Store collapsed state in localStorage
+  useEffect(() => {
+    const storedCollapsedState = localStorage.getItem('sidebarCollapsed');
+    if (storedCollapsedState) {
+      setIsCollapsed(storedCollapsedState === 'true');
+    }
+  }, []);
+  
+  const toggleSidebar = () => {
+    const newCollapsedState = !isCollapsed;
+    setIsCollapsed(newCollapsedState);
+    localStorage.setItem('sidebarCollapsed', String(newCollapsedState));
+  };
+  
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (session) {
+          // Get user name from metadata or email
+          const userName = session.user.user_metadata?.name || 
+                          session.user.user_metadata?.full_name || 
+                          session.user.email?.split('@')[0] || 
+                          'Usuário';
+          
+          setUsername(userName);
+          setEmail(session.user.email || '');
+          
+          // Get profile data from database
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('avatar_url')
+            .eq('user_id', session.user.id)
+            .single();
+          
+          // Improved profile image handling with deep inspection of user data
+          let profileImageUrl = null;
+          
+          // 1. Try Google picture from user metadata (most common location)
+          if (session.user.user_metadata?.picture) {
+            profileImageUrl = session.user.user_metadata.picture;
+          } 
+          // 2. Try Google picture from raw user metadata (sometimes stored here)
+          else if (session.user.user_metadata?.raw_user_meta_data?.picture) {
+            profileImageUrl = session.user.user_metadata.raw_user_meta_data.picture;
+          }
+          // 3. Try avatar_url from profile database
+          else if (profile?.avatar_url) {
+            profileImageUrl = profile.avatar_url;
+          }
+          // 4. Try avatar_url from metadata
+          else if (session.user.user_metadata?.avatar_url) {
+            profileImageUrl = session.user.user_metadata.avatar_url;
+          }
+          // 5. Try avatar_url from raw user metadata
+          else if (session.user.user_metadata?.raw_user_meta_data?.avatar_url) {
+            profileImageUrl = session.user.user_metadata.raw_user_meta_data.avatar_url;
+          }
+          // 6. Try Google OAuth specific fields
+          else if (session.user.identities && session.user.identities.length > 0) {
+            const googleIdentity = session.user.identities.find(identity => identity.provider === 'google');
+            if (googleIdentity?.identity_data?.avatar_url) {
+              profileImageUrl = googleIdentity.identity_data.avatar_url;
+            }
+          }
+          
+          setProfileImage(profileImageUrl);
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+    
+    fetchUserData();
+  }, []);
+  
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+  
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      router.push('/auth/login');
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
   const navigation = [
     { 
-      name: 'Dashboard', 
+      name: t('sidebar.dashboard'), 
       href: '/dashboard', 
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -18,7 +129,7 @@ export default function Sidebar() {
       ) 
     },
     { 
-      name: 'Products', 
+      name: t('sidebar.products'), 
       href: '/dashboard/products', 
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -27,7 +138,7 @@ export default function Sidebar() {
       ) 
     },
     { 
-      name: 'Sales', 
+      name: t('sidebar.sales'), 
       href: '/dashboard/sales', 
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,16 +147,16 @@ export default function Sidebar() {
       ) 
     },
     { 
-      name: 'Customers', 
+      name: t('sidebar.customers'), 
       href: '/dashboard/customers', 
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
       ) 
     },
     { 
-      name: 'Analytics', 
+      name: t('sidebar.analytics'), 
       href: '/dashboard/analytics', 
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,35 +165,55 @@ export default function Sidebar() {
       ) 
     },
     { 
-      name: 'Settings', 
+      name: t('sidebar.settings'), 
       href: '/dashboard/settings', 
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      ) 
-    },
+      icon: <Settings className="h-5 w-5" /> 
+    }
   ];
 
   return (
-    <div className="h-screen bg-dark-700 border-r border-dark-600 w-64 flex-shrink-0 overflow-y-auto">
-      <div className="flex items-center justify-center h-16 border-b border-dark-600">
-        <Link href="/dashboard" className="flex items-center">
-              <div className="bg-primary-900 p-1 rounded-md mr-2">
-                <Image 
-                  src="/assets/logo-branca.png" 
-                  alt="Umporcento Logo" 
-                  width={24} 
-                  height={24} 
-                />
+    <div className={`h-screen bg-dark-700 border-r border-dark-600 transition-all duration-300 flex-shrink-0 overflow-y-auto ${isCollapsed ? 'w-16' : 'w-64'}`}>
+      <div className="relative h-16 border-b border-dark-600 bg-gradient-to-r from-dark-800 to-dark-700 flex items-center justify-between px-4">
+        {!isCollapsed && (
+          <div className="flex items-center flex-1">
+            <Link href="/dashboard" className="flex items-center">
+              <div className="relative group">
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-primary-600 to-primary-400 rounded-full opacity-30 group-hover:opacity-50 blur transition duration-300"></div>
+                <div className="relative">
+                  <Image 
+                    src="/assets/logo-solo-azul-medio.png" 
+                    alt="Umporcento Logo" 
+                    width={32} 
+                    height={32} 
+                    className="transition-all duration-300"
+                  />
+                </div>
               </div>
-          <span className="font-gotham-black text-lg text-white">Um<span className="font-gotham-thin">porcento</span></span>
-        </Link>
+              <span className="font-gotham-black text-lg text-white ml-3 transition-opacity duration-300">
+                Um<span className="font-gotham-thin bg-clip-text text-transparent bg-gradient-to-r from-primary-300 to-primary-500">porcento</span>
+              </span>
+            </Link>
+          </div>
+        )}
+        
+        <button 
+          onClick={toggleSidebar}
+          className={`h-8 w-8 flex items-center justify-center rounded-full bg-dark-600 hover:bg-dark-500 text-primary-400 hover:text-primary-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-50 ${isCollapsed ? 'mx-auto' : ''}`}
+          aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+        </button>
       </div>
       
-      <div className="px-4 py-6">
-        <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4 ml-2">MENU</p>
+      <div className={`${isCollapsed ? 'px-2' : 'px-4'} py-6`}>
+        {!isCollapsed && (
+          <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-4 ml-2">MENU</p>
+        )}
+        {isCollapsed && (
+          <div className="flex justify-center mb-4">
+            <Menu size={16} className="text-gray-400" />
+          </div>
+        )}
         <nav className="space-y-1">
           {navigation.map((item) => {
             const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
@@ -93,13 +224,23 @@ export default function Sidebar() {
                 className={`group flex items-center px-2 py-2 text-sm font-medium rounded-lg transition-colors ${isActive 
                   ? 'bg-primary-900/20 text-primary-400' 
                   : 'text-gray-300 hover:bg-dark-600 hover:text-white'}`}
+                title={isCollapsed ? item.name : ''}
               >
-                <div className={`mr-3 flex-shrink-0 ${isActive ? 'text-primary-400' : 'text-gray-400 group-hover:text-primary-400'}`}>
+                <div className={`flex-shrink-0 ${isCollapsed ? 'mx-auto' : 'mr-3'} ${isActive ? 'text-primary-400' : 'text-gray-400 group-hover:text-primary-400'}`}>
                   {item.icon}
                 </div>
-                <span className="flex-1">{item.name}</span>
-                {isActive && (
-                  <span className="ml-3 h-6 w-1 rounded-full bg-primary-400"></span>
+                {!isCollapsed && <span className="flex-1">{item.name}</span>}
+                {isActive && !isCollapsed && (
+                  <div className="relative ml-3">
+                    <span className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-primary-400 rounded-full opacity-50 blur-sm animate-pulse"></span>
+                    <span className="relative h-6 w-1 rounded-full bg-primary-400 block"></span>
+                  </div>
+                )}
+                {isActive && isCollapsed && (
+                  <div className="absolute left-0">
+                    <span className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-primary-400 rounded-r-full opacity-50 blur-sm animate-pulse"></span>
+                    <span className="relative h-6 w-1 rounded-r-full bg-primary-400 block"></span>
+                  </div>
                 )}
               </Link>
             );
@@ -107,16 +248,75 @@ export default function Sidebar() {
         </nav>
       </div>
       
-      <div className="px-4 py-4 mt-6 border-t border-dark-600">
-        <div className="flex items-center">
-          <div className="flex-shrink-0">
-            <div className="h-8 w-8 rounded-full bg-primary-500 flex items-center justify-center text-white font-medium">U</div>
+      <div className={`${isCollapsed ? 'px-2' : 'px-4'} py-4 mt-6 border-t border-dark-600`} ref={userDropdownRef}>
+        <div 
+          className={`cursor-pointer hover:bg-dark-600 p-2 rounded-lg transition-colors ${isCollapsed ? 'flex justify-center' : 'flex items-center'}`}
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        >
+          <div className="flex-shrink-0 relative">
+            {/* Glowing effect for profile image */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-primary-400 rounded-full opacity-75 blur-sm animate-pulse"></div>
+            {profileImage ? (
+              <div className="relative h-8 w-8 rounded-full overflow-hidden border-2 border-primary-500">
+                <img 
+                  src={profileImage} 
+                  alt={username} 
+                  className="h-full w-full object-cover"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    const parent = target.parentElement;
+                    if (parent) {
+                      target.style.display = 'none';
+                      const fallback = document.createElement('div');
+                      fallback.className = "h-full w-full bg-primary-600 flex items-center justify-center text-white font-medium";
+                      fallback.textContent = username.charAt(0).toUpperCase();
+                      parent.appendChild(fallback);
+                    }
+                  }}
+                />
+              </div>
+            ) : (
+              <div className="relative h-8 w-8 rounded-full bg-primary-600 flex items-center justify-center text-white font-medium">
+                {username.charAt(0).toUpperCase()}
+              </div>
+            )}
           </div>
-          <div className="ml-3">
-            <p className="text-sm font-medium text-white">User Name</p>
-            <p className="text-xs text-gray-400">user@example.com</p>
-          </div>
+          {!isCollapsed && (
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-white">{username}</p>
+              <p className="text-xs text-gray-400">{email}</p>
+            </div>
+          )}
         </div>
+        
+        {/* User dropdown menu */}
+        {isDropdownOpen && (
+          <div className={`mt-2 bg-dark-700 border border-dark-600 rounded-md shadow-lg overflow-hidden ${isCollapsed ? 'absolute left-16 z-50 w-48' : ''}`}>
+            <Link 
+              href="/profile" 
+              className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-dark-600 hover:text-white"
+              onClick={() => setIsDropdownOpen(false)}
+            >
+              <User className="w-4 h-4 mr-2" />
+              {t('userMenu.profile')}
+            </Link>
+            <Link 
+              href="/settings" 
+              className="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-dark-600 hover:text-white"
+              onClick={() => setIsDropdownOpen(false)}
+            >
+              <Settings className="w-4 h-4 mr-2" />
+              {t('userMenu.settings')}
+            </Link>
+            <button 
+              onClick={handleSignOut}
+              className="w-full flex items-center px-4 py-2 text-sm text-red-400 hover:bg-dark-600 hover:text-red-300"
+            >
+              <LogOut className="w-4 h-4 mr-2" />
+              {t('userMenu.logout')}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -289,32 +289,36 @@ export default function Header() {
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="flex items-center space-x-2 text-white hover:text-primary-400 transition-colors focus:outline-none"
             >
-              {profileImage ? (
-                <div className="h-8 w-8 rounded-full overflow-hidden border-2 border-primary-500">
-                  <img 
-                    src={profileImage} 
-                    alt={username} 
-                    className="h-full w-full object-cover"
-                    onError={(e) => {
-                      // If image fails to load, replace with initials
-                      const target = e.currentTarget;
-                      const parent = target.parentElement;
-                      if (parent) {
-                        target.style.display = 'none';
-                        // Create a fallback element with initials
-                        const fallback = document.createElement('div');
-                        fallback.className = "h-full w-full bg-primary-600 flex items-center justify-center text-white font-medium";
-                        fallback.textContent = username.charAt(0).toUpperCase();
-                        parent.appendChild(fallback);
-                      }
-                    }}
-                  />
-                </div>
-              ) : (
-                <div className="h-8 w-8 rounded-full bg-primary-600 flex items-center justify-center text-white font-medium">
-                  {username.charAt(0).toUpperCase()}
-                </div>
-              )}
+              <div className="flex-shrink-0 relative">
+                {/* Glowing effect for profile image */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-primary-400 rounded-full opacity-75 blur-sm animate-pulse"></div>
+                {profileImage ? (
+                  <div className="relative h-8 w-8 rounded-full overflow-hidden border-2 border-primary-500">
+                    <img 
+                      src={profileImage} 
+                      alt={username} 
+                      className="h-full w-full object-cover"
+                      onError={(e) => {
+                        // If image fails to load, replace with initials
+                        const target = e.currentTarget;
+                        const parent = target.parentElement;
+                        if (parent) {
+                          target.style.display = 'none';
+                          // Create a fallback element with initials
+                          const fallback = document.createElement('div');
+                          fallback.className = "h-full w-full bg-primary-600 flex items-center justify-center text-white font-medium";
+                          fallback.textContent = username.charAt(0).toUpperCase();
+                          parent.appendChild(fallback);
+                        }
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div className="relative h-8 w-8 rounded-full bg-primary-600 flex items-center justify-center text-white font-medium">
+                    {username.charAt(0).toUpperCase()}
+                  </div>
+                )}
+              </div>
             </button>
 
             {/* Dropdown menu */}
