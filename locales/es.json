@@ -123,25 +123,52 @@
         {
           "title": "Ingrese detalles sobre su producto en nuestra plataforma",
           "items": [
-            { "label": "Título del producto", "value": "AgentAI - Tu SDR con IA" },
-            { "label": "Precio", "value": "U$ 19.90/mes" },
-            { "label": "Comisión", "value": "50%" }
+            {
+              "label": "Título del producto",
+              "value": "AgentAI - Tu SDR con IA"
+            },
+            {
+              "label": "Precio",
+              "value": "U$ 19.90/mes"
+            },
+            {
+              "label": "Comisión",
+              "value": "50%"
+            }
           ]
         },
         {
           "title": "Presente su producto a nuestros vendedores globales",
           "items": [
-            { "label": "Pitch de presentación", "value": "Video que te hace único" },
-            { "label": "Archivos para compartir", "value": "Creativos validados" },
-            { "label": "Datos para compartir", "value": "Métricas ya analizadas" }
+            {
+              "label": "Pitch de presentación",
+              "value": "Video que te hace único"
+            },
+            {
+              "label": "Archivos para compartir",
+              "value": "Creativos validados"
+            },
+            {
+              "label": "Datos para compartir",
+              "value": "Métricas ya analizadas"
+            }
           ]
         },
         {
           "title": "Integración con su sistema financiero",
           "items": [
-            { "label": "Integración con Gateway", "value": "Utilice su plataforma o la nuestra" },
-            { "label": "Proyección de monetización", "value": "Aumente facturación y MRR" },
-            { "label": "Gamifique sus ganancias", "value": "Conexión única con vendedores top" }
+            {
+              "label": "Integración con Gateway",
+              "value": "Utilice su plataforma o la nuestra"
+            },
+            {
+              "label": "Proyección de monetización",
+              "value": "Aumente facturación y MRR"
+            },
+            {
+              "label": "Gamifique sus ganancias",
+              "value": "Conexión única con vendedores top"
+            }
           ]
         }
       ]
@@ -151,28 +178,64 @@
         {
           "title": "Descubra productos de tecnología y recurrencia",
           "items": [
-            { "label": "Recurrencia", "value": "Construya ingresos sólidos y predecibles" },
-            { "label": "Globalización", "value": "Venda a cualquier parte del mundo" },
-            { "label": "Estructura", "value": "Monte su propia estructura digital" }
+            {
+              "label": "Recurrencia",
+              "value": "Construya ingresos sólidos y predecibles"
+            },
+            {
+              "label": "Globalización",
+              "value": "Venda a cualquier parte del mundo"
+            },
+            {
+              "label": "Estructura",
+              "value": "Monte su propia estructura digital"
+            }
           ]
         },
         {
           "title": "Cree su propio imperio y sea creador de productos",
           "items": [
-            { "label": "Transformación", "value": "Tenga su propio proyecto además de vender otros ya validados" },
-            { "label": "Mentoría", "value": "Soporte completo desde estrategias hasta monetización" },
-            { "label": "Productos diversos", "value": "Micro-SaaS, SaaS, Agentes de IA, elija con lo que más se identifique" }
+            {
+              "label": "Transformación",
+              "value": "Tenga su propio proyecto además de vender otros ya validados"
+            },
+            {
+              "label": "Mentoría",
+              "value": "Soporte completo desde estrategias hasta monetización"
+            },
+            {
+              "label": "Productos diversos",
+              "value": "Micro-SaaS, SaaS, Agentes de IA, elija con lo que más se identifique"
+            }
           ]
         },
         {
           "title": "Comunidad única y exclusiva enfocada en resultados y crecimiento conjunto",
           "stats": [
-            { "value": "1000+", "label": "Miembros Activos" },
-            { "value": "24/7", "label": "Soporte Dedicado" },
-            { "value": "50+", "label": "Países" },
-            { "value": "100+", "label": "Mentorías Realizadas" },
-            { "value": "R$1M+", "label": "GMV Mensual" },
-            { "value": "10+", "label": "Eventos Anuales" }
+            {
+              "value": "1000+",
+              "label": "Miembros Activos"
+            },
+            {
+              "value": "24/7",
+              "label": "Soporte Dedicado"
+            },
+            {
+              "value": "50+",
+              "label": "Países"
+            },
+            {
+              "value": "100+",
+              "label": "Mentorías Realizadas"
+            },
+            {
+              "value": "R$1M+",
+              "label": "GMV Mensual"
+            },
+            {
+              "value": "10+",
+              "label": "Eventos Anuales"
+            }
           ]
         }
       ]
@@ -180,57 +243,57 @@
   },
   "ctaSection": {
     "badge": "Transforme su negocio hoy",
-    "title": "\u00bfListo para ser parte del 1% que transforma el mundo?",
-    "subtitle": "\u00danase a nuestro ecosistema y obtenga acceso a tecnolog\u00edas innovadoras, estrategias comprobadas y una comunidad de alto rendimiento.",
-    "chooseParticipation": "Elija c\u00f3mo desea participar",
+    "title": "¿Listo para ser parte del 1% que transforma el mundo?",
+    "subtitle": "Únase a nuestro ecosistema y obtenga acceso a tecnologías innovadoras, estrategias comprobadas y una comunidad de alto rendimiento.",
+    "chooseParticipation": "Elija cómo desea participar",
     "technologyGroup": {
-      "joinThe": "\u00danase al",
-      "groupName": "Grupo de Tecnolog\u00eda"
+      "joinThe": "Únase al",
+      "groupName": "Grupo de Tecnología"
     },
     "salesGroup": {
-      "joinThe": "\u00danase al",
+      "joinThe": "Únase al",
       "groupName": "Grupo de Ventas"
     },
     "support": {
       "badge": "Soporte",
-      "title": "\u00bfTiene alguna pregunta?",
-      "technologySpecialist": "Especialista en Tecnolog\u00eda",
+      "title": "¿Tiene alguna pregunta?",
+      "technologySpecialist": "Especialista en Tecnología",
       "salesSpecialist": "Especialista en Ventas"
     }
   },
   "nucleusSection": {
-    "title": "N\u00facleos 1% World",
+    "title": "Núcleos 1% World",
     "salesCard": {
       "title": "1% World Ventas",
-      "description": "Nuestro n\u00facleo de ventas re\u00fane a los mejores profesionales del mercado para ayudar a las empresas a escalar sus resultados y a los vendedores a maximizar sus ganancias.",
+      "description": "Nuestro núcleo de ventas reúne a los mejores profesionales del mercado para ayudar a las empresas a escalar sus resultados y a los vendedores a maximizar sus ganancias.",
       "features": [
         {
           "title": "Estrategias",
-          "description": "Metodolog\u00edas probadas para aumentar conversiones y maximizar resultados en ventas."
+          "description": "Metodologías probadas para aumentar conversiones y maximizar resultados en ventas."
         },
         {
-          "title": "Mentor\u00eda",
-          "description": "Acompa\u00f1amiento personalizado para desarrollar sus habilidades de ventas."
+          "title": "Mentoría",
+          "description": "Acompañamiento personalizado para desarrollar sus habilidades de ventas."
         }
       ],
       "whatsappButton": "Grupo de WhatsApp",
-      "accessButton": "Acceder al N\u00facleo"
+      "accessButton": "Acceder al Núcleo"
     },
     "techCard": {
-      "title": "1% World Tecnolog\u00eda",
-      "description": "Nuestro n\u00facleo de tecnolog\u00eda desarrolla soluciones innovadoras para impulsar el crecimiento de empresas y vendedores en el mundo digital para due\u00f1os de empresas digitales.",
+      "title": "1% World Tecnología",
+      "description": "Nuestro núcleo de tecnología desarrolla soluciones innovadoras para impulsar el crecimiento de empresas y vendedores en el mundo digital para dueños de empresas digitales.",
       "features": [
         {
-          "title": "Innovaci\u00f3n",
-          "description": "Tecnolog\u00edas de punta para optimizar procesos y maximizar resultados, cree soluciones \u00fanicas en el entorno digital."
+          "title": "Innovación",
+          "description": "Tecnologías de punta para optimizar procesos y maximizar resultados, cree soluciones únicas en el entorno digital."
         },
         {
           "title": "Comunidad",
-          "description": "Red de profesionales y recursos para acelerar su crecimiento, con\u00e9ctese con el 1% que domina el mercado digital."
+          "description": "Red de profesionales y recursos para acelerar su crecimiento, conéctese con el 1% que domina el mercado digital."
         }
       ],
       "whatsappButton": "Grupo de WhatsApp",
-      "accessButton": "Acceder al N\u00facleo"
+      "accessButton": "Acceder al Núcleo"
     }
   },
   "auth": {
@@ -316,6 +379,247 @@
       "customers": "Clientes",
       "analytics": "Análisis",
       "settings": "Configuración"
+    },
+    "salesConversion": "Conversión de Ventas",
+    "activeProducts": "Productos Activos",
+    "averageROI": "ROI Promedio",
+    "totalSalesToday": "Ventas Totales Hoy",
+    "availableBalance": "Saldo Disponible",
+    "pendingBalance": "Saldo Pendiente",
+    "revenueGoals": "Metas de Ingresos",
+    "silverEntrepreneur": "Emprendedor Plata",
+    "premiumConsulting": "Consultoría Premium",
+    "paymentMethods": "Métodos de Pago",
+    "creditCard": "Tarjeta de Crédito",
+    "debitCard": "Tarjeta de Débito",
+    "checkoutConversionRate": "Tasa de Conversión de Checkout",
+    "strategicAnalysis": "Análisis Estratégico",
+    "aiInsight1": "La tasa de conversión de tu producto ha aumentado un 12% este mes.",
+    "aiInsight2": "Considera expandir tu programa de afiliados para aumentar las ventas.",
+    "aiInsight3": "Tu mayor ROI proviene de cursos digitales en el nicho de finanzas.",
+    "aiInsight4": "Los clientes que utilizan checkout express tienen un valor promedio de pedido un 35% mayor.",
+    "increased": "Aumentó",
+    "decreased": "Disminuyó",
+    "by": "en",
+    "days": "{{count}} días",
+    "ceo": {
+      "title": "Panel CEO",
+      "totalSales": "Ventas Totales",
+      "metrics": "Métricas de Negocio",
+      "sales": "Ventas",
+      "revenue": "Ingresos",
+      "customers": "Clientes",
+      "products": "Productos",
+      "previous": "Anterior",
+      "goal": "Meta",
+      "basedOnLast30Days": "Basado en los últimos 30 días",
+      "aiAnalysis": "Análisis de IA",
+      "checkoutOptimizationTip": "Optimiza tu checkout para aumentar la conversión en un 15%",
+      "suggestion": "Sugerencia",
+      "expressCheckout": "Checkout Express",
+      "gamificationSystem": "Sistema de Gamificación",
+      "toNextLevel": "para el siguiente nivel",
+      "next": "Siguiente",
+      "nextReward": "Próxima recompensa",
+      "topAssociates": "Mejores Asociados",
+      "topProducts": "Mejores Productos",
+      "viewAll": "Ver todos",
+      "completed": "completado",
+      "silver": "Plata",
+      "gold": "Oro",
+      "bronze": "Bronce",
+      "platinum": "Platino",
+      "diamond": "Diamante"
+    },
+    "associate": {
+      "title": "Panel Associate",
+      "metrics": "Métricas de Afiliado",
+      "affiliateMetrics": "Métricas de Afiliado",
+      "totalSales": "Ventas Totales",
+      "gamificationTitle": "Sistema de Gamificación",
+      "sales": "Ventas",
+      "commission": "Comisión",
+      "clicks": "Clics",
+      "conversion": "Conversión",
+      "days": "días",
+      "gamificationSystem": "Sistema de Gamificación",
+      "silverEntrepreneur": "Emprendedor Plata",
+      "goldEntrepreneur": "Emprendedor Oro",
+      "premiumConsulting": "Consultoría Premium",
+      "toNextLevel": "para el siguiente nivel",
+      "next": "Siguiente",
+      "nextReward": "Próxima recompensa",
+      "bronze": "Bronce",
+      "silver": "Plata",
+      "gold": "Oro",
+      "platinum": "Platino",
+      "diamond": "Diamante",
+      "achievementsByProduct": "Logros por Producto",
+      "recommendedForYou": "Recomendado para Ti",
+      "personalized": "Personalizado",
+      "aiRecommendationDescription": "Basado en tu perfil de ventas, 1% AI ha identificado productos con alto potencial de conversión para tu audiencia.",
+      "match": "coincidencia",
+      "price": "Precio",
+      "yourCommission": "Tu Comisión",
+      "strategicAnalysis": "Análisis Estratégico",
+      "aiInsights": "Insights de 1% AI",
+      "hello": "Hola",
+      "aiAnalysisIntro": "nuestro análisis de IA ha identificado estrategias personalizadas para maximizar tus ventas de",
+      "recommendedStrategies": "Estrategias Recomendadas",
+      "performanceMetrics": "Métricas de Rendimiento",
+      "currentConversionRate": "Tasa de Conversión Actual",
+      "recommendedGoal": "Meta Recomendada",
+      "viewFullPlan": "Ver plan completo",
+      "completed": "completado",
+      "viewAll": "Ver todos",
+      "promote": "Promover",
+      "growth": "Crecimiento"
+    },
+    "creator": {
+      "title": "Panel UGC Creator",
+      "metrics": "Métricas de Creator",
+      "views": "Visualizaciones",
+      "engagement": "Engagement",
+      "content": "Contenidos",
+      "followers": "Seguidores",
+      "days": "{{count}} días",
+      "contentStrategy": "Estrategia de Contenido",
+      "strategyDescription": "Optimiza tu estrategia de contenido para aumentar engagement",
+      "recommendedProducts": "Productos Recomendados",
+      "recommendedDescription": "Productos seleccionados para tu audiencia",
+      "profilePerformance": "Rendimiento del Perfil",
+      "contentIdeas": "Ideas de Contenido",
+      "audienceInsights": "Insights de Audiencia",
+      "topPerformingContent": "Contenido con Mejor Rendimiento",
+      "contentCalendar": "Calendario de Contenido",
+      "profile": "Perfil 1% UGC Creator",
+      "profileTitle": "Perfil UGC Creator",
+      "profileDescription": "Gestiona tu perfil y contenido",
+      "outOf5": "de 5",
+      "creatorSince": "Creator desde",
+      "creatorId": "ID de Creator",
+      "strategyGreeting": "Hola",
+      "trendingProducts": "Productos en Tendencia",
+      "trendingDescription": "Productos populares que puedes promocionar",
+      "bestSellers": "Más Vendidos",
+      "topSelling": "Más Vendidos de la Semana",
+      "revenue": "Ingresos",
+      "products": "Productos",
+      "creatorLevel3": "Creador Nivel 3",
+      "silverCreator": "Creator Plata",
+      "noProductsYet": "Aún no tienes productos registrados.",
+      "addFirstProduct": "Agrega tu primer producto para comenzar a vender.",
+      "addProduct": "Agregar Producto",
+      "videos": "Videos",
+      "images": "Imágenes",
+      "articles": "Artículos",
+      "outOf5": "de 5",
+      "createContent": "Crear Contenido",
+      "sortBy": "Ordenar por",
+      "mostSold": "Más Vendidos",
+      "highestCommission": "Mayor Comisión",
+      "newest": "Más Recientes",
+      "growth": "Crecimiento",
+      "promote": "Promover",
+      "statusIncreased": "Aumentó",
+      "statusDecreased": "Disminuyó",
+      "statusBy": "por",
+      "yourCommission": "Tu Comisión",
+      "conversionRate": "Tasa de Conversión",
+      "previous": "Anterior",
+      "goal": "Meta",
+      "basedOnLast30Days": "Basado en los últimos 30 días",
+      "aiAnalysis": "1% AI • Análisis",
+      "checkoutOptimizationTip": "Optimiza tu proceso de pago reduciendo los campos obligatorios. Los usuarios que completan la compra en menos de 45 segundos tienen un 78% más de probabilidades de volver.",
+      "suggestion": "Sugerencia",
+      "expressCheckout": "Pago Express",
+      "paymentDistribution": "Distribución de Pagos",
+      "creditCard": "Tarjeta de Crédito",
+      "pix": "PIX",
+      "debitCard": "Tarjeta de Débito",
+      "total": "Total",
+      "user": "Usuario",
+      "salesConversion": "Conversión de Ventas",
+      "personalized": "Personalizado",
+      "completed": "completado",
+      "nextReward": "Próxima recompensa",
+      "bronze": "Bronce",
+      "silver": "Plata",
+      "gold": "Oro",
+      "platinum": "Platino",
+      "diamond": "Diamante",
+      "trendBy": "por",
+      "trendIncreased": "aumentó",
+      "revenueGoals": "Metas de Ingresos",
+      "silverEntrepreneur": "Emprendedor Plata",
+      "premiumConsulting": "Consultoría Premium",
+      "activeProducts": "Productos Activos",
+      "averageROI": "ROI Promedio",
+      "totalSalesToday": "Ventas Totales Hoy",
+      "availableBalance": "Saldo Disponible",
+      "pendingBalance": "Saldo Pendiente",
+      "paymentMethods": "Métodos de Pago",
+      "checkoutConversionRate": "Tasa de Conversión de Checkout",
+      "recommendedForYou": "Recomendados para Ti",
+      "aiCreatorRecommendationDescription": "Basándose en tu perfil de creador, 1% AI ha identificado oportunidades con alto potencial para tu audiencia.",
+      "commission": "Comisión",
+      "campaigns": "Campañas",
+      "hybrid": "Híbridos",
+      "match": "compatibilidad",
+      "price": "Precio",
+      "value": "Valor",
+      "totalValue": "Valor Total",
+      "yourFee": "Tu tarifa",
+      "yourEarnings": "Tus ganancias",
+      "viewDetails": "Ver Detalles",
+      "promoteNow": "Promover Ahora",
+      "apply": "Aplicar",
+      "participate": "Participar",
+      "aiInsights": "Insights de 1% AI",
+      "contentInsight": "Tu contenido sobre {{type}} tiene mayor engagement",
+      "audienceInsight": "Tu audiencia responde mejor a {{type}}",
+      "tutorials": "tutoriales",
+      "reviews": "reseñas",
+      "education": "educación",
+      "educationalProducts": "productos educativos",
+      "premiumBrands": "marcas premium",
+      "combinedOffers": "ofertas combinadas",
+      "practicalDemoProducts": "Productos con demostración práctica",
+      "storytellingCampaigns": "Campañas con storytelling",
+      "longTermPartnerships": "Asociaciones a largo plazo",
+      "highPotential": "tienen alto potencial",
+      "viewFullAnalysis": "Ver análisis completo",
+      "trendDecreased": "disminuyó",
+      "sales": "Ventas",
+      "strategicAnalysis": "Análisis Estratégico",
+      "aiInsight1": "La tasa de conversión de tu producto ha aumentado un 12% este mes.",
+      "aiInsight2": "Considera expandir tu programa de afiliados para aumentar las ventas.",
+      "aiInsight3": "Tu mayor ROI proviene de cursos digitales en el nicho de finanzas.",
+      "aiInsight4": "Los clientes que utilizan checkout express tienen un valor promedio de pedido un 35% mayor.",
+      "commissionRate": "Tasa de Comisión",
+      "linkClicks": "Clics en Enlaces",
+      "promotedProducts": "Productos Promocionados",
+      "digitalMarketingCourse": "Curso de Marketing Digital",
+      "investmentsEbook": "E-book de Inversiones",
+      "websiteTemplate": "Plantilla de Sitio Web",
+      "affiliateMetrics": "Métricas de Afiliado",
+      "affiliateLinks": "Enlaces de Afiliado",
+      "generateCustomLinks": "Genera enlaces personalizados para compartir y aumentar tus comisiones.",
+      "customLink": "Enlace Personalizado",
+      "copy": "Copiar",
+      "promotionalMaterials": "Materiales Promocionales",
+      "accessBannersAndMaterials": "Accede a banners y materiales para tus campañas",
+      "accessMaterials": "Acceder a materiales",
+      "strategyGreeting": "Hola",
+      "strategyIntro": "nuestro análisis de IA ha identificado estrategias personalizadas para maximizar el impacto de tu contenido en",
+      "contentBasedInsights": "Insights Basados en Tu Contenido",
+      "recommendedStrategies": "Estrategias Recomendadas",
+      "performanceMetrics": "Métricas de Rendimiento",
+      "engagementRate": "Tasa de Engagement",
+      "averageTime": "Tiempo Promedio",
+      "recommendedGoal": "Meta Recomendada",
+      "goalProgress": "80% del camino para alcanzar tu meta de engagement",
+      "viewFullContentPlan": "Ver Plan de Contenido Completo"
     }
   },
   "userform": {
