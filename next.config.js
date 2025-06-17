@@ -10,7 +10,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    domains: ['localhost', 'images.unsplash.com'],
+    domains: ['localhost', 'images.unsplash.com', 'via.placeholder.com', 'placehold.co'],
   },
   webpack: (config) => {
     config.resolve.fallback = { fs: false, path: false };
